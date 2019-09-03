@@ -4,8 +4,8 @@
 
 /** \brief Solicita un número al usuario y devuelve dicho número.
  *
- * \param No recibe parametros.
- * \return El número ingresado por el usuario.
+ * \param void No recibe parametros.
+ * \return float El número ingresado por el usuario.
  *
  */
 float getNumber(void)
@@ -32,9 +32,9 @@ float getNumber(void)
 
 /** \brief Caclula la suma entre dos números.
  *
- * \param Primer operando.
- * \param Segundo operando.
- * \return El resultado de la suma de ambos números.
+ * \param number1 float Primer operando.
+ * \param number2 float Segundo operando.
+ * \return float El resultado de la suma de ambos números.
  *
  */
 float add(float number1, float number2)
@@ -48,9 +48,9 @@ float add(float number1, float number2)
 
 /** \brief Caclula la resta entre dos números.
  *
- * \param Primer operando.
- * \param Segundo operando.
- * \return El resultado de la resta de ambos números.
+ * \param number1 float Primer operando.
+ * \param number2 float Segundo operando.
+ * \return float El resultado de la resta de ambos números.
  *
  */
 float subtract(float number1, float number2)
@@ -64,9 +64,9 @@ float subtract(float number1, float number2)
 
 /** \brief Caclula la división entre dos números.
  *
- * \param Primer operando.
- * \param Segundo operando.
- * \return El resultado de la división entre ambos números.
+ * \param number1 float Primer operando.
+ * \param number2 float Segundo operando.
+ * \return float El resultado de la división entre ambos números.
  *
  */
 float divide(float number1, float number2)
@@ -86,9 +86,9 @@ float divide(float number1, float number2)
 
 /** \brief Caclula la multiplicación entre dos números.
  *
- * \param Primer operando.
- * \param Segundo operando.
- * \return El resultado de la multiplicación entre ambos números.
+ * \param number1 float Primer operando.
+ * \param number2 float Segundo operando.
+ * \return float El resultado de la multiplicación entre ambos números.
  *
  */
 float multiply(float number1, float number2)
@@ -102,9 +102,8 @@ float multiply(float number1, float number2)
 
 /** \brief Caclula el factorial de un número.
  *
- * \param Primer operando.
- * \param Segundo operando.
- * \return El factorial del número.
+ * \param number float Operando a calcular.
+ * \return float El factorial del número.
  *
  */
 float factorial(float number)
