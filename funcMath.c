@@ -8,24 +8,24 @@
  * \return float El número ingresado por el usuario.
  *
  */
-float getNumber(void)
+float getFloat(void)
 {
     float number;
-    float validation;
+    int validation;
 
     do
     {
         fflush(stdin);
         printf("\n======================\n");
         printf("INGRESE UN OPERANDO: ");
-        validation = scanf("%f", &number);
+        validation = scanf("%f", &number); //Validación para números, en caso de ingresar un caracter distinto a un número la variable validation valdrá 0.
 
-        if(!validation)
+        if(!validation) // Si la variable validation vale 0 se muestra el mensaje de error.
         {
-            printf("\n%cERROR!, DEBE INGRESAR UN N%cMERO.\n", 173, 233);
+            printf("\n%cERROR! DEBE INGRESAR UN N%cMERO.\n", 173, 233);
         }
 
-    }while(!validation);
+    }while(!validation); // Si la variable validation es 0 se repite el ciclo hasta que validation sea distinta de 0, es decir, hasta ingresr un número.
 
     return number;
 }
@@ -41,7 +41,7 @@ float add(float number1, float number2)
 {
     float result;
 
-    result = number1 + number2;
+    result = number1 + number2; // Cálculo de la suma de ambos números recibidos como parámetros.
 
     return result;
 }
@@ -57,7 +57,7 @@ float subtract(float number1, float number2)
 {
     float result;
 
-    result = number1 - number2;
+    result = number1 - number2; // Cálculo de la resta del primer número menos el segundo número recibido como parámetro.
 
     return result;
 }
@@ -78,7 +78,7 @@ float divide(float number1, float number2)
         result = 0.00;
     }else
     {
-        result = number1 / number2;
+        result = number1 / number2; // Cálculo de la división entre ambos números recibidos como parámetros.
     }
 
     return result;
@@ -95,7 +95,7 @@ float multiply(float number1, float number2)
 {
     float result;
 
-    result = number1 * number2;
+    result = number1 * number2; // Calculo del producto de ambos números recibidos como parámetros.
 
     return result;
 }
@@ -103,19 +103,17 @@ float multiply(float number1, float number2)
 /** \brief Caclula el factorial de un número.
  *
  * \param number float Operando a calcular.
- * \return float El factorial del número.
+ * \return long El factorial del número.
  *
  */
-long factorial(long number)
+long int factorial(float number) //Recibe un flotante pero toma en cuenta solo con la parte entera del número y calcula su factorial.
 {
-    float result = number;
+    long int result=1;
+    int i;
 
-    int i = 1;
-
-    while(i<number)
+    for(i=number; i>=1; i--) //Iteración para calcular el producto del número recibido como parámetro por cada uno de sus números naturales inferiores hasta 1 (en forma decreciente).
     {
         result *= i;
-        i++;
     }
 
     return result;

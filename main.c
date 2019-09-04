@@ -39,13 +39,13 @@ int main()
         case '1':
 
             system("cls");
-            number1 = getNumber();
+            number1 = getFloat();
             break;
 
         case '2':
 
             system("cls");
-            number2 = getNumber();
+            number2 = getFloat();
             break;
 
         case '3':
@@ -67,7 +67,7 @@ int main()
                 printf("\n======================================");
                 printf("\n%cSus operaciones han sido calculadas!\n", 173);
                 printf("======================================\n\n");
-                calculated=1;
+                calculated='1';
             }
             break;
 
