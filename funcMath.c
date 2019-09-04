@@ -106,7 +106,7 @@ float multiply(float number1, float number2)
  * \return float El factorial del número.
  *
  */
-float factorial(float number)
+long factorial(long number)
 {
     float result = number;
 

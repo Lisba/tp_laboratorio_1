@@ -5,16 +5,16 @@
 int main()
 {
 
-    float number1 = 0.00;
-    float number2 = 0.00;
+    float number1=0;
+    float number2=0;
     float resultAdd;
     float resultSubtract;
+    char calculated='0';
     float resultDivide;
     float resultMultiply;
-    float resultFactorialA;
-    float resultFactorialB;
+    long resultFactorialA;
+    long resultFactorialB;
     char option;
-    char option2;
 
 
     do
@@ -50,58 +50,54 @@ int main()
 
         case '3':
 
-            do
+            if(number1==0 && number2==0)
             {
-                system("cls");
+                printf("\n=========================================================\n");
+                printf("%cDEBE INGRESAR LOS OPERANDOS PARA EFECTUAR LOS C%cLCULOS!", 173, 181);
+                printf("\n=========================================================\n\n");
 
-                printf("\n===================================================\n");
-                printf("  SELECCIONE LAS OPERACIONES QUE DESEA EJECUTAR\n");
-                printf("===================================================\n\n");
-
-                printf("SELECCIONE UNA POR UNA LAS OPCIONES QUE DESEA DEL MEN%c:\n\n", 233);
-
-                printf("a) SUMAR (A+B)\n");
-                printf("b) RESTAR (A-B)\n");
-                printf("c) DIVIDIR (A/B)\n");
-                printf("d) MULTIPLICAR (A*B)\n");
-                printf("e) FACTORIAL (A!) y (B!)\n");
-                printf("f) SALIR\n\n");
-
-                printf("SELECCIONE UNA OPCI%cN: ", 224);
-                fflush(stdin);
-                scanf("%c", &option2);
-
-                switch(option2)
-                {
-                    case 'a':
-                        resultAdd = add(number1, number2);
-                        break;
-                    case 'b':
-                        resultSubtract = subtract(number1, number2);
-                        break;
-                    case 'c':
-                        resultDivide = divide(number1, number2);
-                        break;
-                    case 'd':
-                        resultMultiply = multiply(number1, number2);
-                        break;
-                    case 'e':
-                        resultFactorialA = factorial(number1);
-                        resultFactorialB = factorial(number2);
-                        break;
-                }
-
-            }while(option2!='f');
+            }else
+            {
+                resultAdd = add(number1, number2);
+                resultSubtract = subtract(number1, number2);
+                resultDivide = divide(number1, number2);
+                resultMultiply = multiply(number1, number2);
+                resultFactorialA = factorial(number1);
+                resultFactorialB = factorial(number2);
+                printf("\n======================================");
+                printf("\n%cSus operaciones han sido calculadas!\n", 173);
+                printf("======================================\n\n");
+                calculated=1;
+            }
             break;
 
         case '4':
-            printf("\n===================================================\n\n");
-            printf("a) El resultado de A+B es: %f\n", resultAdd);
-            printf("b) El resultado de A-B es: %f\n", resultSubtract);
-            printf("c) El resultado de A/B es: %f\n", resultDivide);
-            printf("d) El resultado de A*B es: %f\n", resultMultiply);
-            printf("e) El resultado del 1er operando es: %f y el factorial del 2do operando es: %f\n", resultFactorialA, resultFactorialB);
-            printf("\n===================================================\n\n");
+            if(calculated=='0')
+            {
+                printf("\n=========================================================");
+                printf("\n%cDEBE HACER EL C%cLCULO DE LAS OPERACIONES PARA MOSTRAR LOS RESULTADOS!\n", 173, 181);
+                printf("=========================================================\n\n");
+
+            }else
+            {
+                printf("\n===================================================\n\n");
+                printf("a) El resultado de A+B es: %f\n", resultAdd);
+                printf("b) El resultado de A-B es: %f\n", resultSubtract);
+
+                if(number2 == 0)
+                {
+                    printf("d) No se puede dividir por cero (0).\n");
+                }else
+                {
+                    printf("c) El resultado de A/B es: %f\n", resultDivide);
+
+                }
+
+                printf("d) El resultado de A*B es: %f\n", resultMultiply);
+                printf("e) El factorial del 1er operando es: %ld y el factorial del 2do operando es: %ld\n", resultFactorialA, resultFactorialB);
+                printf("\n===================================================\n\n");
+
+            }
             break;
         }
 
