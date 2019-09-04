@@ -5,8 +5,8 @@
 int main()
 {
 
-    float number1=0;
-    float number2=0;
+    float number1=0.00;
+    float number2=0.00;
     float resultAdd;
     float resultSubtract;
     char calculated='0';
@@ -15,7 +15,6 @@ int main()
     long resultFactorialA;
     long resultFactorialB;
     char option;
-
 
     do
     {
@@ -39,18 +38,18 @@ int main()
         case '1':
 
             system("cls");
-            number1 = getFloat();
+            number1 = getFloat("INGRESE PRIMER OPERANDO: ");
             break;
 
         case '2':
 
             system("cls");
-            number2 = getFloat();
+            number2 = getFloat("INGRESE SEGUNDO OPERANDO: ");
             break;
 
         case '3':
 
-            if(number1==0 && number2==0)
+            if(number1 == 0 && number2 == 0)
             {
                 printf("\n=========================================================\n");
                 printf("%cDEBE INGRESAR LOS OPERANDOS PARA EFECTUAR LOS C%cLCULOS!", 173, 181);
@@ -67,12 +66,12 @@ int main()
                 printf("\n======================================");
                 printf("\n%cSus operaciones han sido calculadas!\n", 173);
                 printf("======================================\n\n");
-                calculated='1';
+                calculated = '1';
             }
             break;
 
         case '4':
-            if(calculated=='0')
+            if(calculated == '0')
             {
                 printf("\n=========================================================");
                 printf("\n%cDEBE HACER EL C%cLCULO DE LAS OPERACIONES PARA MOSTRAR LOS RESULTADOS!\n", 173, 181);
@@ -105,7 +104,7 @@ int main()
 
         system("cls");
 
-    }while(option!='5');
+    }while(option != '5');
 
     return 0;
 }

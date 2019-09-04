@@ -8,16 +8,16 @@
  * \return float El número ingresado por el usuario.
  *
  */
-float getFloat(void)
+float getFloat(char message[])
 {
     float number;
     int validation;
 
     do
     {
-        fflush(stdin);
+        fflush(stdin); // Limpieza del buffer de entrada ya que en caso de ingresar un caracter no válido quedará enter en memoria e iterará infinitamente.
         printf("\n======================\n");
-        printf("INGRESE UN OPERANDO: ");
+        printf("%s", message);
         validation = scanf("%f", &number); //Validación para números, en caso de ingresar un caracter distinto a un número la variable validation valdrá 0.
 
         if(!validation) // Si la variable validation vale 0 se muestra el mensaje de error.

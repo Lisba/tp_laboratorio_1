@@ -1,4 +1,4 @@
-float getFloat(void);
+float getFloat(char message[]);
 float add(float number1, float number2);
 float subtract(float number1, float number2);
 float divide(float number1, float number2);
