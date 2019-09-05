@@ -64,7 +64,12 @@ int main()
                 resultFactorialA = factorial(number1);
                 resultFactorialB = factorial(number2);
                 printf("\n======================================");
-                printf("\n%cSus operaciones han sido calculadas!\n", 173);
+                printf("\n%cSUS OPERACIONES HAN SIDO CALCULADAS!\n", 173);
+                printf("a) SE CALCUL%c LA SUMA (A+B).\n", 224);
+                printf("b) SE CALCUL%c LA RESTA (A-B).\n", 224);
+                printf("c) SE CALCUL%c LA DIVISI%cN (A/B).\n", 224, 224);
+                printf("d) SE CALCUL%c LA MULTIPLICACI%cN (A*B).\n", 224, 224);
+                printf("e) SE CALCUL%c EL FACTORIAL DE LA PARTE ENTERA (A! Y B!).\n", 224);
                 printf("======================================\n\n");
                 calculated = '1';
             }
@@ -80,20 +85,20 @@ int main()
             }else
             {
                 printf("\n===================================================\n\n");
-                printf("a) El resultado de A+B es: %f\n", resultAdd);
-                printf("b) El resultado de A-B es: %f\n", resultSubtract);
+                printf("a) EL RESULTADO DE A+B ES: %f\n", resultAdd);
+                printf("b) EL RESULTADO DE A-B ES: %f\n", resultSubtract);
 
                 if(number2 == 0)
                 {
-                    printf("d) No se puede dividir por cero (0).\n");
+                    printf("d) NO ES POSIBLE DIVIDIR POR CERO (0).\n");
                 }else
                 {
-                    printf("c) El resultado de A/B es: %f\n", resultDivide);
+                    printf("c) EL RESULTADO DE A/B ES: %f\n", resultDivide);
 
                 }
 
-                printf("d) El resultado de A*B es: %f\n", resultMultiply);
-                printf("e) El factorial del 1er operando es: %ld y el factorial del 2do operando es: %ld\n", resultFactorialA, resultFactorialB);
+                printf("d) EL RESULTADO DE A*B ES: %f\n", resultMultiply);
+                printf("e) EL FACTORIAL DE 1ER OPERANDO ES: %ld Y EL FACTORIAL DEL 2DO OPERANDO ES: %ld\n", resultFactorialA, resultFactorialB);
                 printf("\n===================================================\n\n");
 
             }
