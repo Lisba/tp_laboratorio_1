@@ -16,7 +16,7 @@ int main()
     long resultFactorialB;
     char option;
 
-    do
+    do      // Menú principal
     {
         printf("\n================================\n");
         printf(" %cBIENVENIDO A SU CALCULADORA!\n", 173);
@@ -33,7 +33,7 @@ int main()
         printf("\nINGRESE UNA OPCI%cN: ", 224);
         scanf("%c", &option);
 
-        switch(option)
+        switch(option)  // Se determina que ocurrirá en caso segun la opción seleccionada por el usuario.
         {
         case '1':
 
@@ -49,7 +49,7 @@ int main()
 
         case '3':
 
-            if(number1 == 0 && number2 == 0)
+            if(number1 == 0 && number2 == 0) // Validación, en caso de que ambos operandos sean cero no se pueden realizar cálculos.
             {
                 printf("\n=========================================================\n");
                 printf("%cDEBE INGRESAR LOS OPERANDOS PARA EFECTUAR LOS C%cLCULOS!", 173, 181);
@@ -63,20 +63,20 @@ int main()
                 resultMultiply = multiply(number1, number2);
                 resultFactorialA = factorial(number1);
                 resultFactorialB = factorial(number2);
-                printf("\n======================================");
+                printf("\n======================================");     // Muestra al usuario que cálculos se efectuaron.
                 printf("\n%cSUS OPERACIONES HAN SIDO CALCULADAS!\n", 173);
                 printf("a) SE CALCUL%c LA SUMA (A+B).\n", 224);
                 printf("b) SE CALCUL%c LA RESTA (A-B).\n", 224);
                 printf("c) SE CALCUL%c LA DIVISI%cN (A/B).\n", 224, 224);
                 printf("d) SE CALCUL%c LA MULTIPLICACI%cN (A*B).\n", 224, 224);
-                printf("e) SE CALCUL%c EL FACTORIAL DE LA PARTE ENTERA (A! Y B!).\n", 224);
+                printf("e) SE CALCUL%c EL FACTORIAL DE LA PARTE ENTERA DE LOS OPERANDOS (A! Y B!).\n", 224);
                 printf("======================================\n\n");
-                calculated = '1';
+                calculated = '1';  // Confirma que ya se calcularon las operaciones.
             }
             break;
 
         case '4':
-            if(calculated == '0')
+            if(calculated == '0') // Validación, si aún no se han realizado los cálculos entonces no se pueden mostrar los resultados.
             {
                 printf("\n=========================================================");
                 printf("\n%cDEBE HACER EL C%cLCULO DE LAS OPERACIONES PARA MOSTRAR LOS RESULTADOS!\n", 173, 181);
@@ -88,9 +88,10 @@ int main()
                 printf("a) EL RESULTADO DE A+B ES: %f\n", resultAdd);
                 printf("b) EL RESULTADO DE A-B ES: %f\n", resultSubtract);
 
-                if(number2 == 0)
+                if(number2 == 0) // Validación, si el segundo operando es cero no se puede realizar la división.
                 {
                     printf("d) NO ES POSIBLE DIVIDIR POR CERO (0).\n");
+
                 }else
                 {
                     printf("c) EL RESULTADO DE A/B ES: %f\n", resultDivide);
@@ -98,7 +99,7 @@ int main()
                 }
 
                 printf("d) EL RESULTADO DE A*B ES: %f\n", resultMultiply);
-                printf("e) EL FACTORIAL DE 1ER OPERANDO ES: %ld Y EL FACTORIAL DEL 2DO OPERANDO ES: %ld\n", resultFactorialA, resultFactorialB);
+                printf("e) EL FACTORIAL DEL 1ER OPERANDO ES: %ld Y EL FACTORIAL DEL 2DO OPERANDO ES: %ld\n", resultFactorialA, resultFactorialB);
                 printf("\n===================================================\n\n");
 
             }

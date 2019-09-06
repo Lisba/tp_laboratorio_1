@@ -1,12 +1,12 @@
 # depslib dependency file v1.0
-1567640776 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_1_laboratorio_calculadora\funcmath.c
+1567740007 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_1_laboratorio_calculadora\funcmath.c
 	<stdio.h>
 	<stdlib.h>
 	"funcMath.h"
 
 1567640744 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_1_laboratorio_calculadora\funcmath.h
 
-1567654268 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_1_laboratorio_calculadora\main.c
+1567739741 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_1_laboratorio_calculadora\main.c
 	<stdio.h>
 	<stdlib.h>
 	"funcMath.h"

@@ -106,7 +106,7 @@ float multiply(float number1, float number2)
  * \return long El factorial del número.
  *
  */
-long int factorial(float number) //Recibe un flotante pero toma en cuenta solo con la parte entera del número y calcula su factorial.
+long int factorial(float number) //Recibe un flotante pero toma en cuenta solo la parte entera del número y calcula su factorial.
 {
     long int result=1;
     int i;
