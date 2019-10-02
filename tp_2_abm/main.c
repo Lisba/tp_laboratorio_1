@@ -14,13 +14,10 @@ int main()
     char exit;
     char exitSubMenu;
     int retorno;
-    char name[51];
-    char lastName[51];
-    float salary;
-    int sector;
     int idForRemove;
     int initiated;
     int order;
+
     initEmployee(employeesArray, TAM);
     do
     {
@@ -28,13 +25,7 @@ int main()
         switch( menu() )
         {
             case 1:
-                system("cls");
-                printf("****** Alta de Empleado *******\n\n");
-                getString(name, "Ingrese el nombre: ", "Error, debe contener entre 2 y 50 caracteres. ", 2, 51);
-                getString(lastName, "Ingrese el apellido: ", "Error, debe contener entre 2 y 50 caracteres. ", 2, 51);
-                getFloat(&salary, "Ingrese el salario: ", "Error, debe ingresar un flotante. ", 1, 1000000);
-                getInt(&sector, "Ingrese el sector: ", "Error, debe ingresar un entero. ", 1, 50);
-                retorno = addEmployee(employeesArray, TAM, id, name, lastName, salary, sector);
+                retorno = loadEmployee(employeesArray, TAM, id);
                 if(retorno)
                 {
                     id++;
@@ -45,7 +36,7 @@ int main()
                 initiated = validateArrayInitiated(employeesArray, TAM);
                 if(initiated)
                 {
-                    printf("opcion 2");
+                    modifyEmployee(employeesArray, TAM);
                 }
                 else
                 {

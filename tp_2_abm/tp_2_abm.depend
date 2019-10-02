@@ -1,12 +1,5 @@
 # depslib dependency file v1.0
-1569731873 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_2_abm\arrayemployees.c
-	<stdio.h>
-	<stdlib.h>
-	<conio.h>
-	<string.h>
-	"ArrayEmployees.h"
-
-1569731646 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_2_abm\main.c
+1569987601 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_2_abm\arrayemployees.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>
@@ -14,9 +7,17 @@
 	"ArrayEmployees.h"
 	"lisba_utn.h"
 
-1569729730 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_2_abm\arrayemployees.h
+1569983766 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_2_abm\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"ArrayEmployees.h"
+	"lisba_utn.h"
 
-1569725745 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_2_abm\lisba_utn.c
+1569983766 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_2_abm\arrayemployees.h
+
+1569981843 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_2_abm\lisba_utn.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

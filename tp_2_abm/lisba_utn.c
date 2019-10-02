@@ -106,7 +106,7 @@ char getChar(char* input, char message[], char eMessage[], char lowLimit, char h
     return able;
 }
 
-char getString(char input[], char message[], char eMessage[], int lowLimit, int highLimit)
+char getString(char* input, char message[], char eMessage[], int lowLimit, int highLimit)
 {
     int able = 0;
     char aux[highLimit];

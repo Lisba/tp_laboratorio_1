@@ -3,6 +3,7 @@
 #include <conio.h>
 #include <string.h>
 #include "ArrayEmployees.h"
+#include "lisba_utn.h"
 
 char menu(void)
 {
@@ -257,4 +258,104 @@ int validateArrayInitiated(eEmployee listEmployee[], int lengthEmployee)
     }
 
     return arrayInitiated;
+}
+
+int loadEmployee(eEmployee* listEmployee, int lengthEmployee, int lastId)
+{
+    int able = 0;
+    char name[51];
+    char lastName[51];
+    float salary;
+    int sector;
+
+    system("cls");
+
+    printf("****** Alta de Empleado *******\n\n");
+
+    getString(name, "Ingrese el nombre: ", "Error, debe contener entre 2 y 50 caracteres. ", 2, 51);
+    getString(lastName, "Ingrese el apellido: ", "Error, debe contener entre 2 y 50 caracteres. ", 2, 51);
+    getFloat(&salary, "Ingrese el salario: ", "Error, debe ingresar un flotante. ", 1.0, 1000000.0);
+    getInt(&sector, "Ingrese el sector: ", "Error, debe ingresar un entero. ", 1, 50);
+
+    able = addEmployee(listEmployee, lengthEmployee, lastId, name, lastName, salary, sector);
+
+    return able;
+}
+
+void modifyEmployee(eEmployee listEmployee[], int lengthEmployee)
+{
+    int id;
+    int option;
+    float salary;
+    int sector;
+    int flag;
+
+    do
+    {
+        system("cls");
+
+        printf("****** Modificar Empleado *******\n\n");
+
+        flag = 1;
+
+        fflush(stdin);
+        getInt(&id, "Ingrese el ID del Empleado a modificar: ", "Error, debe ingresar un ID valido. ", 1000, 2000);
+
+        for (int i=0; i<lengthEmployee; i++)
+        {
+            if(listEmployee[i].id == id)
+            {
+                printf("\n");
+                printf(" ID    NOMBRE    APELLIDO    SALARIO    SECTOR\n");
+                printEmployee(listEmployee[i]);
+
+                printf("\nQue desea modificar de este empleado?\n");
+                printf("\n1) Nombre\n");
+                printf("2) Apellido\n");
+                printf("3) Salario\n");
+                printf("4) Sector\n");
+                printf("5) Salir\n\n");
+
+                printf("Seleccione una opcion: ");
+                scanf("%d", &option);
+
+                flag = 0;
+
+                switch(option)
+                {
+                case 1:
+                    getString(listEmployee[i].name, "\nIngrese el nuevo nombre: ", "Error, debe contener entre 2 y 50 caracteres. ", 2, 51);
+                    break;
+                case 2:
+                    getString(listEmployee[i].lastName, "\nIngrese el nuevo apellido: ", "Error, debe contener entre 2 y 50 caracteres. ", 2, 51);
+                    break;
+                case 3:
+                    getFloat(&salary, "\nIngrese el nuevo salario: ", "Error, debe ingresar un flotante. ", 1.0, 1000000.0);
+                    listEmployee[i].salary = salary;
+                    break;
+                case 4:
+                    getInt(&sector, "\nIngrese el nuevo sector: ", "Error, debe ingresar un entero. ", 1, 50);
+                    listEmployee[i].sector = sector;
+                    break;
+                case 5:
+                    printf("Confirma que desea volver al menu anterior? (s/n): ");
+                    fflush(stdin);
+                    option = getch();
+                    break;
+                default:
+                    printf("\nOpcion no valida!\n\n");
+                    break;
+                }
+            }
+            else if(listEmployee[i].id != id && flag == 1)
+            {
+                printf("\nNo se encontro ningun empleado con ese ID.\n");
+                system("pause");
+                break;
+            }
+        }
+
+    } while (option != 's');
+
+
 }
