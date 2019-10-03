@@ -69,12 +69,12 @@ int main()
                             case 1:
                                 printf("Ascendente(0) o Descendente(1)?: ");
                                 scanf("%d", &order);
-                                sortEmployee(employeesArray, TAM, order);
+                                sortEmployees(employeesArray, TAM, order);
                                 printEmployees(employeesArray, TAM);
                                 break;
 
                             case 2:
-                                printf("Opcion 2");
+                                infoEmployees(employeesArray, TAM);
                                 break;
 
                             case 3:

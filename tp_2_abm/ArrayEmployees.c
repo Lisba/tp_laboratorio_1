@@ -160,7 +160,7 @@ int removeEmployee(eEmployee listEmployee[], int lengthEmployee, int id)
     return able;
 }
 
-int sortEmployee(eEmployee listEmployee[], int lengthEmployee, int order)
+int sortEmployees(eEmployee listEmployee[], int lengthEmployee, int order)
 {
     int able = -1;
 
@@ -356,6 +356,40 @@ void modifyEmployee(eEmployee listEmployee[], int lengthEmployee)
         }
 
     } while (option != 's');
+}
 
+void infoEmployees(eEmployee* listEmployee, int lengthEmployee)
+{
+    float total=0;
+    float average=0;
+    int i;
+    int counter=0;
 
+    for(i=0; i<lengthEmployee; i++)
+    {
+        if(listEmployee[i].isEmpty == 0)
+        {
+            total += listEmployee[i].salary;
+            counter++;
+        }
+    }
+
+    average = (float) (total / counter);
+
+    system("cls");
+
+    printf("****** Informes de Empleados *******\n\n");
+    printf("El total de los salarios es: %.2f\n\n", total);
+    printf("El promedio de los salarios es: %.2f\n\n", average);
+    printf("Los empleados que superan el salario promedio son:\n\n");
+    printf(" ID    NOMBRE    APELLIDO    SALARIO    SECTOR\n");
+
+    for(int j=0; j<lengthEmployee; j++)
+    {
+         if(listEmployee[j].salary >= average)
+         {
+             printEmployee(listEmployee[j]);
+         }
+    }
+    system("pause");
 }
