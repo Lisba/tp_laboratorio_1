@@ -3,6 +3,16 @@
 #include <string.h>
 #include "lisba_utn.h"
 
+/** \brief  Pide un numero entero al usuario y valida y retorna el numero entero ingresado.
+ *
+ * \param input int* Variable puntero origen-destino.
+ * \param message[] char mensaje a mostrar al usuario.
+ * \param eMessage[] char mensaje a mostrar en caso de ingresar dato invalido.
+ * \param lowLimit int rango limite inferior.
+ * \param highLimit int rango limite superior.
+ * \return int retorna un estado en caso de poder o no ejecutar la operacion.
+ *
+ */
 int getInt(int* input, char message[], char eMessage[], int lowLimit, int highLimit)
 {
     int able = 0;
@@ -13,7 +23,7 @@ int getInt(int* input, char message[], char eMessage[], int lowLimit, int highLi
     {
         printf("%s", message);
         fflush(stdin);
-        validation = scanf("%d", &aux);
+        validation = scanf("%i", &aux);
 
         if(!validation || aux < lowLimit || aux > highLimit)
         {
@@ -27,6 +37,16 @@ int getInt(int* input, char message[], char eMessage[], int lowLimit, int highLi
     return able;
 }
 
+/** \brief  Pide un numero flotante al usuario y valida y retorna el numero flotante ingresado.
+ *
+ * \param input float* Variable puntero origen-destino.
+ * \param message[] char mensaje a mostrar al usuario.
+ * \param eMessage[] char mensaje a mostrar en caso de ingresar dato invalido.
+ * \param lowLimit float rango limite inferior.
+ * \param highLimit float rango limite superior.
+ * \return int retorna un estado en caso de poder o no ejecutar la operacion.
+ *
+ */
 int getFloat(float* input, char message[], char eMessage[], float lowLimit, float highLimit)
 {
     int able = 0;
@@ -82,7 +102,17 @@ int getFloat(float* input, char message[], char eMessage[], float lowLimit, floa
     return able;
 }
 
-char getChar(char* input, char message[], char eMessage[], char lowLimit, char highLimit)
+/** \brief Pide un caracter al usuario, valida y retorna el caracter ingresado.
+ *
+ * \param input char* Variable puntero origen-destino.
+ * \param message[] char mensaje a mostrar al usuario.
+ * \param eMessage[] char mensaje a mostrar en caso de ingresar dato invalido.
+ * \param lowLimit char rango limite inferior.
+ * \param highLimit char rango limite superior.
+ * \return int retorna un estado en caso de poder o no ejecutar la operacion.
+ *
+ */
+int getChar(char* input, char message[], char eMessage[], char lowLimit, char highLimit)
 {
     int able = 0;
     char aux;
@@ -106,7 +136,17 @@ char getChar(char* input, char message[], char eMessage[], char lowLimit, char h
     return able;
 }
 
-char getString(char* input, char message[], char eMessage[], int lowLimit, int highLimit)
+/** \brief Pide una cadena de caracteres al usuario, valida y retorna la cadena de caracteres ingresada.
+ *
+ * \param input char* Variable puntero origen-destino.
+ * \param message[] char mensaje a mostrar al usuario.
+ * \param eMessage[] char mensaje a mostrar en caso de ingresar dato invalido.
+ * \param lowLimit int rango limite inferior de caracteres.
+ * \param highLimit int rango limite superior de caracteres.
+ * \return int retorna un estado en caso de poder o no ejecutar la operacion.
+ *
+ */
+int getString(char* input, char message[], char eMessage[], int lowLimit, int highLimit)
 {
     int able = 0;
     char aux[highLimit];
@@ -219,109 +259,13 @@ long int factorial(float number) //Recibe un flotante pero toma en cuenta solo l
     return result;
 }
 
-void pedirAlumno(int legajo[], int edad[], char sexo[], int nota1[], int nota2[], float promedio[], int tam)
-{
-
-    for(int i=0; i<tam; i++)
-    {
-        printf("Ingrese el legajo: ");
-        scanf("%d", &legajo[i]);
-
-        printf("Ingrese la edad: ");
-        scanf("%d", &edad[i]);
-
-        printf("Ingrese el sexo: ");
-        fflush(stdin);
-        scanf("%c", &sexo[i]);
-
-        printf("Ingrese la nota1: ");
-        scanf("%d", &nota1[i]);
-
-        printf("Ingrese la nota2: ");
-        scanf("%d", &nota2[i]);
-
-        promedio[i] = (float) (nota1[i] + nota2[i]) / 2;
-    }
-}
-
-void mostrarUnAlumno(int legajo, int edad, char sexo, int nota1, int nota2, float promedio)
-{
-     printf("%d\t%d\t%c\t%d\t%d\t%.3f\n", legajo, edad, sexo, nota1, nota2, promedio);
-}
-
-void mostrarAlumnos(int legajo[], int edad[], char sexo[], int nota1[], int nota2[], float promedio[], int tam)
-{
-    printf("\nleg:\tedad:\tsexo:\tn1:\tn2:\tpromedio:\n\n");
-    for(int i=0; i<tam; i++)
-    {
-        mostrarUnAlumno(legajo[i], edad[i], sexo[i], nota1[i], nota2[i], promedio[i]);
-    }
-
-}
-
-void ordenarAlumnos(int legajo[], int edad[], char sexo[], int nota1[], int nota2[], float promedio[], int tam)
-{
-
-    int auxInt;
-    char auxChar;
-    float auxFloat;
-    int swap = 0;
-
-    for(int i=0; i<tam-1; i++)
-    {
-
-        for(int j=i+1; j<tam; j++)
-        {
-
-            if(sexo[i] > sexo[j])
-            {
-                swap = 1;
-
-            } else if (sexo[i] == sexo[j] && legajo[i] > legajo[j])
-            {
-                swap = 1;
-            }
-
-            if (swap == 1)
-            {
-
-                auxInt = legajo[i];
-                legajo[i] = legajo[j];
-                legajo[j] = auxInt;
-
-                auxInt = edad[i];
-                edad[i] = edad[j];
-                edad[j] = auxInt;
-
-                auxChar = sexo[i];
-                sexo[i] = sexo[j];
-                sexo[j] = auxChar;
-
-                auxInt = nota1[i];
-                nota1[i] = nota1[j];
-                nota1[j] = auxInt;
-
-                auxInt = nota2[i];
-                nota2[i] = nota2[j];
-                nota2[j] = auxInt;
-
-                auxFloat = promedio[i];
-                promedio[i] = promedio[j];
-                promedio[j] = auxFloat;
-
-                swap = 0;
-            }
-        }
-    }
-}
-
 /** \brief
  *
- * \param nombreApellido[] char Vector donde se guardará el nombre y apellido.
+ * \param nameLastName[] char Vector donde se guardará el nombre y apellido.
  * \return void No retorna ya que recibe la variable por referencia (modifica la original).
  *
  */
-void getNombreApellido(char nombreApellido[])
+void getNameLastName(char nameLastName[])
 {
     char nombre[23];
     char apellido[11];
@@ -355,7 +299,7 @@ void getNombreApellido(char nombreApellido[])
 
     strcpy(apellido, aux);
 
-    strcpy(nombreApellido, nombre);
-    strcat(nombreApellido, ", ");
-    strcat(nombreApellido, apellido);
+    strcpy(nameLastName, nombre);
+    strcat(nameLastName, ", ");
+    strcat(nameLastName, apellido);
 }

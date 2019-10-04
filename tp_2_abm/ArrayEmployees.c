@@ -5,7 +5,7 @@
 #include "ArrayEmployees.h"
 #include "lisba_utn.h"
 
-char menu(void)
+int menu(void)
 {
     int option;
 
@@ -25,7 +25,7 @@ char menu(void)
     return option;
 }
 
-char subMenu(void)
+int subMenu(void)
 {
     int option;
 
@@ -49,7 +49,7 @@ int initEmployee(eEmployee listEmployee[], int lenghtEmployee)
 
     for(int i=0; i<lenghtEmployee; i++)
     {
-        listEmployee[i].isEmpty = 1;
+        listEmployee[i].isEmpty = 1; // Asigna 1 al campo isEmpty de todas las posiciones del array para inicializarlo.
         able = 0;
     }
 
@@ -64,8 +64,8 @@ int findFreePosition(eEmployee listEmployee[], int lenghtEmployee)
     {
         if(listEmployee[i].isEmpty == 1)
         {
-            index = i;
-            break;
+            index = i; // Guardo en la variable i el valor de la primera posicion disponible encontrada.
+            break; // Corto la ejecucion del bucle ya que de lo contrario la variable i tomará el valor de la ultima posicion disponible encontrada y deseo la primera posicion disponible.
         }
     }
 
@@ -77,7 +77,7 @@ int addEmployee(eEmployee listEmployee[], int lenghtEmployee, int id, char name[
     int able = 0;
     int index;
 
-    index = findFreePosition(listEmployee, lenghtEmployee);
+    index = findFreePosition(listEmployee, lenghtEmployee); // Obtengo -1 si el arraya de estructuras esta lleno o el indice de la primera posicion disponible.
 
     if( index == -1 )
     {
@@ -85,7 +85,7 @@ int addEmployee(eEmployee listEmployee[], int lenghtEmployee, int id, char name[
     }
     else
     {
-        listEmployee[index] = newEmployee(id, name, lastName, salary, sector);
+        listEmployee[index] = newEmployee(id, name, lastName, salary, sector); // Almaceno los datos del nuevo empleado en la primera posicion disponible del array de estructuras.
         printf("\nALTA EXITOSA\n\n");
         able = 1;
     }
@@ -114,8 +114,10 @@ int findEmpoyeeById(eEmployee listEmployee[], int lengthEmployee, int id)
     for(int i=0; i<lengthEmployee; i++)
     {
         if(listEmployee[i].id == id)
+        {
             index = i;
-            break;
+            break; // Interrumpo la ejecucion del bucle para devolver el valor de la posicion del empleado encontrado.
+        }
     }
 
     return index;
@@ -131,9 +133,10 @@ int removeEmployee(eEmployee listEmployee[], int lengthEmployee, int id)
     {
         if(listEmployee[i].id == id && listEmployee[i].isEmpty == 0)
         {
-            printf("\n%s %4s %4.2f %4d\n\n", listEmployee[i].name, listEmployee[i].lastName, listEmployee[i].salary, listEmployee[i].sector);
+            printf("\n ID    NOMBRE    APELLIDO    SALARIO    SECTOR\n");
+            printEmployee(listEmployee[i]);
 
-            printf("Esta seguro de eliminar a este empleado? (s/n)");
+            printf("\nEsta seguro de eliminar a este empleado? (s/n)");
             fflush(stdin);
             option = getch();
 
@@ -162,7 +165,7 @@ int removeEmployee(eEmployee listEmployee[], int lengthEmployee, int id)
 
 int sortEmployees(eEmployee listEmployee[], int lengthEmployee, int order)
 {
-    int able = -1;
+    int able = 0;
 
     eEmployee aux;
 
@@ -183,7 +186,7 @@ int sortEmployees(eEmployee listEmployee[], int lengthEmployee, int order)
                     {
                         if(listEmployee[i].sector == listEmployee[j].sector)
                         {
-                            if(listEmployee[i].lastName > listEmployee[j].lastName)
+                            if(strcmp(listEmployee[i].lastName, listEmployee[j].lastName)>0)
                             {
                                 aux = listEmployee[i];
                                 listEmployee[i] = listEmployee[j];
@@ -193,6 +196,7 @@ int sortEmployees(eEmployee listEmployee[], int lengthEmployee, int order)
                     }
                 }
             }
+            able = 1;
             break;
         case 1:
             for(int i=0; i<lengthEmployee-1; i++)
@@ -219,6 +223,7 @@ int sortEmployees(eEmployee listEmployee[], int lengthEmployee, int order)
                     }
                 }
             }
+            able = 1;
             break;
     }
 
@@ -254,7 +259,7 @@ int validateArrayInitiated(eEmployee listEmployee[], int lengthEmployee)
     for(int i=0; i<lengthEmployee; i++)
     {
         if(listEmployee[i].isEmpty == 0)
-            arrayInitiated = 1;
+            arrayInitiated = 1; // retorno true si alguna de las posiciones del array de estructuras esta ocupada.
     }
 
     return arrayInitiated;
@@ -277,37 +282,40 @@ int loadEmployee(eEmployee* listEmployee, int lengthEmployee, int lastId)
     getFloat(&salary, "Ingrese el salario: ", "Error, debe ingresar un flotante. ", 1.0, 1000000.0);
     getInt(&sector, "Ingrese el sector: ", "Error, debe ingresar un entero. ", 1, 50);
 
-    able = addEmployee(listEmployee, lengthEmployee, lastId, name, lastName, salary, sector);
+    able = addEmployee(listEmployee, lengthEmployee, lastId, name, lastName, salary, sector); // Carga los datos solicitados al array de estructuras y devuelve true si fue capaz de hacerlo.
 
     return able;
 }
 
-void modifyEmployee(eEmployee listEmployee[], int lengthEmployee)
+int modifyEmployee(eEmployee listEmployee[], int lengthEmployee)
 {
     int id;
     int option;
     float salary;
     int sector;
-    int flag;
+    int index;
+    int able=0;
 
-    do
-    {
         system("cls");
 
         printf("****** Modificar Empleado *******\n\n");
 
-        flag = 1;
-
         fflush(stdin);
         getInt(&id, "Ingrese el ID del Empleado a modificar: ", "Error, debe ingresar un ID valido. ", 1000, 2000);
 
-        for (int i=0; i<lengthEmployee; i++)
-        {
-            if(listEmployee[i].id == id)
+        index = findEmpoyeeById(listEmployee, lengthEmployee, id);
+
+            if(index == -1)
             {
+                printf("\nNo se encontro ningun empleado con ese ID.\n\n");
+            }
+            else
+            {
+                able = 1;
+
                 printf("\n");
                 printf(" ID    NOMBRE    APELLIDO    SALARIO    SECTOR\n");
-                printEmployee(listEmployee[i]);
+                printEmployee(listEmployee[index]);
 
                 printf("\nQue desea modificar de este empleado?\n");
                 printf("\n1) Nombre\n");
@@ -319,43 +327,37 @@ void modifyEmployee(eEmployee listEmployee[], int lengthEmployee)
                 printf("Seleccione una opcion: ");
                 scanf("%d", &option);
 
-                flag = 0;
 
                 switch(option)
                 {
                 case 1:
-                    getString(listEmployee[i].name, "\nIngrese el nuevo nombre: ", "Error, debe contener entre 2 y 50 caracteres. ", 2, 51);
+                    getString(listEmployee[index].name, "\nIngrese el nuevo nombre: ", "Error, debe contener entre 2 y 50 caracteres. ", 2, 51);
+                    printf("\nNombre modificado!\n\n");
                     break;
                 case 2:
-                    getString(listEmployee[i].lastName, "\nIngrese el nuevo apellido: ", "Error, debe contener entre 2 y 50 caracteres. ", 2, 51);
+                    getString(listEmployee[index].lastName, "\nIngrese el nuevo apellido: ", "Error, debe contener entre 2 y 50 caracteres. ", 2, 51);
+                    printf("\nApellido modificado!\n\n");
                     break;
                 case 3:
                     getFloat(&salary, "\nIngrese el nuevo salario: ", "Error, debe ingresar un flotante. ", 1.0, 1000000.0);
-                    listEmployee[i].salary = salary;
+                    printf("\nSalario modificado!\n\n");
+                    listEmployee[index].salary = salary;
                     break;
                 case 4:
                     getInt(&sector, "\nIngrese el nuevo sector: ", "Error, debe ingresar un entero. ", 1, 50);
-                    listEmployee[i].sector = sector;
+                    printf("\nSector modificado!\n\n");
+                    listEmployee[index].sector = sector;
                     break;
                 case 5:
-                    printf("Confirma que desea volver al menu anterior? (s/n): ");
-                    fflush(stdin);
-                    option = getch();
+                    printf("\nSe ha cancelado la modificacion!\n\n");
                     break;
                 default:
                     printf("\nOpcion no valida!\n\n");
                     break;
                 }
             }
-            else if(listEmployee[i].id != id && flag == 1)
-            {
-                printf("\nNo se encontro ningun empleado con ese ID.\n");
-                system("pause");
-                break;
-            }
-        }
 
-    } while (option != 's');
+    return able;
 }
 
 void infoEmployees(eEmployee* listEmployee, int lengthEmployee)
