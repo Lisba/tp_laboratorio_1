@@ -31,7 +31,7 @@ int initEmployee(eEmployee* listEmployee, int lenghtEmployee);
  * \return int Retorna un estado en caso de poder o no ejecutar la operacion.
  *
  */
-int addEmployee(eEmployee listEmployee[], int lenghtEmployee, int id, char name[], char lastName[], float salary, int sector);
+int addEmployee(eEmployee* listEmployee, int lenghtEmployee, int id, char name[], char lastName[], float salary, int sector);
 
 /** \brief Busca en el array de estructuras el empleado que coincida con el id pasado por parametro.
  *
@@ -41,7 +41,7 @@ int addEmployee(eEmployee listEmployee[], int lenghtEmployee, int id, char name[
  * \return int Retorna el indice en el cual se encuentra el empledo buscado por ID o -1 en caso de no encontrarlo.
  *
  */
-int findEmpoyeeById(eEmployee listEmployee[], int lengthEmployee, int id);
+int findEmpoyeeById(eEmployee* listEmployee, int lengthEmployee, int id);
 
 /** \brief Elimina el empleado con el id pasado por parametro.
  *
@@ -51,7 +51,7 @@ int findEmpoyeeById(eEmployee listEmployee[], int lengthEmployee, int id);
  * \return int Retorna un estado en caso de poder o no ejecutar la operacion.
  *
  */
-int removeEmployee(eEmployee listEmployee[], int lengthEmployee, int id);
+int removeEmployee(eEmployee* listEmployee, int lengthEmployee, int id);
 
 /** \brief Ordena el array de estructuras de forma ascendente o descendente.
  *
@@ -61,7 +61,7 @@ int removeEmployee(eEmployee listEmployee[], int lengthEmployee, int id);
  * \return int Retorna un estado en caso de poder o no ejecutar la operacion.
  *
  */
-int sortEmployees(eEmployee listEmployee[], int lengthEmployee, int order);
+int sortEmployees(eEmployee* listEmployee, int lengthEmployee, int order);
 
 /** \brief Imprime por pantalla todo el array de empleados pasado por parametro.
  *
@@ -70,7 +70,7 @@ int sortEmployees(eEmployee listEmployee[], int lengthEmployee, int order);
  * \return void No retorna nada.
  *
  */
-void printEmployees(eEmployee listEmployee[], int lengthEmployee);
+void printEmployees(eEmployee* listEmployee, int lengthEmployee);
 
 /** \brief Muestra un menu de opciones a elegir.
  *

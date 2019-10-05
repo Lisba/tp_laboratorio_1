@@ -43,7 +43,7 @@ int subMenu(void)
     return option;
 }
 
-int initEmployee(eEmployee listEmployee[], int lenghtEmployee)
+int initEmployee(eEmployee* listEmployee, int lenghtEmployee)
 {
     int able = -1;
 
@@ -72,7 +72,7 @@ int findFreePosition(eEmployee listEmployee[], int lenghtEmployee)
     return index;
 }
 
-int addEmployee(eEmployee listEmployee[], int lenghtEmployee, int id, char name[], char lastName[], float salary, int sector)
+int addEmployee(eEmployee* listEmployee, int lenghtEmployee, int id, char name[], char lastName[], float salary, int sector)
 {
     int able = 0;
     int index;
@@ -107,7 +107,7 @@ eEmployee newEmployee(int id, char name[], char lastName[], float salary, int se
     return newEmployee;
 }
 
-int findEmpoyeeById(eEmployee listEmployee[], int lengthEmployee, int id)
+int findEmpoyeeById(eEmployee* listEmployee, int lengthEmployee, int id)
 {
     int index = -1;
 
@@ -123,11 +123,11 @@ int findEmpoyeeById(eEmployee listEmployee[], int lengthEmployee, int id)
     return index;
 }
 
-int removeEmployee(eEmployee listEmployee[], int lengthEmployee, int id)
+int removeEmployee(eEmployee* listEmployee, int lengthEmployee, int id)
 {
     int able = -1;
     char option;
-    int flag;
+    int flag=0;
 
     for(int i=0; i<lengthEmployee; i++)
     {
@@ -146,12 +146,8 @@ int removeEmployee(eEmployee listEmployee[], int lengthEmployee, int id)
                 printf("\n\nBAJA EXITOSA!\n\n");
                 able = 0;
             }
-            flag = 1;
+            flag = 1; // flag para indicar que se encontro un usuario con dicho ID independientemente de si se remueve o no.
             break;
-        }
-        else
-        {
-            flag = 0;
         }
     }
 
@@ -163,7 +159,7 @@ int removeEmployee(eEmployee listEmployee[], int lengthEmployee, int id)
     return able;
 }
 
-int sortEmployees(eEmployee listEmployee[], int lengthEmployee, int order)
+int sortEmployees(eEmployee* listEmployee, int lengthEmployee, int order)
 {
     int able = 0;
 
@@ -230,7 +226,7 @@ int sortEmployees(eEmployee listEmployee[], int lengthEmployee, int order)
     return able;
 }
 
-void printEmployees(eEmployee listEmployee[], int lengthEmployee)
+void printEmployees(eEmployee* listEmployee, int lengthEmployee)
 {
     system("cls");
     printf("****** Lista de Empleados *******\n\n");
