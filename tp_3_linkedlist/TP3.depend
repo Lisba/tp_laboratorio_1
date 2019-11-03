@@ -1,0 +1,143 @@
+# depslib dependency file v1.0
+1533062952 source:/home/mauro/Descargas/Practica_Pair_v1.2/Linux_64/Employee.c
+
+1533063050 source:/home/mauro/Descargas/Practica_Pair_v1.2/Linux_64/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1532354323 /home/mauro/Descargas/Practica_Pair_v1.2/Linux_64/LinkedList.h
+
+1533062926 /home/mauro/Descargas/Practica_Pair_v1.2/Linux_64/Employee.h
+
+1533063080 source:/home/mauro/Descargas/Practica_Pair_v1.2/Linux_64/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1533062952 source:/home/mauro/Descargas/TP3/Linux_64/Employee.c
+
+1533066103 source:/home/mauro/Descargas/TP3/Linux_64/main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1532354323 /home/mauro/Descargas/TP3/Linux_64/LinkedList.h
+
+1533066103 /home/mauro/Descargas/TP3/Linux_64/Employee.h
+
+1533063080 source:/home/mauro/Descargas/TP3/Linux_64/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1533145792 source:/home/mauro/Descargas/TP3-20180801T173619Z-001/TP3/Linux_64/Controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1533118898 /home/mauro/Descargas/TP3-20180801T173619Z-001/TP3/Linux_64/LinkedList.h
+
+1533118898 /home/mauro/Descargas/TP3-20180801T173619Z-001/TP3/Linux_64/Employee.h
+
+1533118898 source:/home/mauro/Descargas/TP3-20180801T173619Z-001/TP3/Linux_64/Employee.c
+
+1533145890 source:/home/mauro/Descargas/TP3-20180801T173619Z-001/TP3/Linux_64/parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1572754141 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+
+1533133022 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\linkedlist.h
+
+1572742045 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\employee.h
+	"lisba_utn.h"
+	"LinkedList.h"
+
+1572750022 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\lisba_utn.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1533133022 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\parser.h
+
+1572754239 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\employee.c
+	"Employee.h"
+	"LinkedList.h"
+
+1572755165 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+
+1533133022 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\controller.h
+
+1572755306 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
+1572750022 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\lisba_utn.c
+	"lisba_utn.h"
+
+1572800751 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+
+1533133022 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\linkedlist.h
+
+1572742045 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\employee.h
+	"lisba_utn.h"
+	"LinkedList.h"
+
+1572796705 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\lisba_utn.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1533133022 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\parser.h
+
+1572804672 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\employee.c
+	"Employee.h"
+	"LinkedList.h"
+
+1572797172 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\lisba_utn.c
+	"lisba_utn.h"
+
+1572799313 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+
+1533133022 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\controller.h
+
+1572803303 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
