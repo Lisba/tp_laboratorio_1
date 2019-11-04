@@ -65,7 +65,16 @@ int main()
                 }
                 break;
             case 4:
-                printf("4");
+                if( arrayIniciado(listaEmpleados) )
+                {
+                    controller_editEmployee(listaEmpleados);
+                    system("pause");
+                }
+                else
+                {
+                    printf("\nNO HAY DATOS CARGADOS PARA MODIFICAR!\n\n");
+                    system("pause");
+                }
                 break;
             case 5:
                 if( arrayIniciado(listaEmpleados) )

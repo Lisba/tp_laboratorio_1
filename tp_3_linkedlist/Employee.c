@@ -96,7 +96,7 @@ int employee_setNombre(sEmployee* this, char* nombre)
 {
     int able = 0;
 
-    if(this != NULL && (nombre != NULL && strlen(nombre)>0))
+    if(this != NULL && (nombre != NULL && strlen(nombre)>1))
     {
         strcpy(this->nombre, nombre);
         able = 1;
@@ -174,7 +174,7 @@ int printEmployee(sEmployee* this)
 {
     int able = 0;
 
-    printf("%d %16s %6d %6d\n", this->id, this->nombre, this->horasTrabajadas, this->sueldo);
+    printf("%d %16s %6d %10d\n", this->id, this->nombre, this->horasTrabajadas, this->sueldo);
     able = 1;
 
     return able;

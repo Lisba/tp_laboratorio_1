@@ -3,7 +3,7 @@
 #include "LinkedList.h"
 #include "Employee.h"
 #include "parser.h"
-
+#include "conio.h"
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
  *
@@ -131,7 +131,79 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_editEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int able = 0;
+    int idToModify;
+    int datoAModificar;
+    int flag = 0;
+    char nombreNuevo[128];
+    int enteroAuxiliar;
+
+    system("cls");
+    printf("**************MODIFICAR EMPLEADO****************\n\n");
+
+    getInt(&idToModify, "INGRESE EL ID DEL EMPLEADO A MODIFICAR: ", "ERROR. DEBE INGRESAR ENTRE 1 Y 2000. ", 1, 2000);
+
+    for(int i=0; i<( ll_len(pArrayListEmployee) ); i++)
+    {
+        if( idToModify == ( (sEmployee*) ll_get(pArrayListEmployee, i) )->id )
+        {
+            flag = 1;
+            printf("\n");
+            printf("ID          NOMBRE  HORAS T.  SUELDO\n");
+            printEmployee((sEmployee*) ll_get(pArrayListEmployee, i));
+            printf("\n");
+
+            printf("1) MODIFICAR NOMBRE.\n");
+            printf("2) MODIFICAR HORAS TRABAJADAS.\n");
+            printf("3) MODIFCAR SUELDO.\n");
+            printf("4) SALIR.\n\n");
+
+            getInt(&datoAModificar, "SELECCIONE UNA OPCION: ", "ERROR. DEBE INGRESAR ENTRE 1 Y 3", 1, 4);
+
+            switch(datoAModificar)
+            {
+            case 1:
+                getName(nombreNuevo, "\nINGRESE EL NOMBRE: ", "ERROR. ", 1, 127);
+                if( employee_setNombre( (sEmployee*) ll_get(pArrayListEmployee, i), nombreNuevo) )
+                {
+                    able = 1;
+                    printf("\nMODIFICACION REALIZADA CON EXITO!\n");
+                }
+                break;
+            case 2:
+                getInt(&enteroAuxiliar, "\nINGRESE LAS HORAS TRBAJADAS: ", "ERROR. ", 1, 1000);
+                if( employee_setHorasTrabajadas( (sEmployee*) ll_get(pArrayListEmployee, i), enteroAuxiliar) )
+                {
+                    able = 1;
+                    printf("\nMODIFICACION REALIZADA CON EXITO!\n");
+                }
+                break;
+            case 3:
+                getInt(&enteroAuxiliar, "\nINGRESE EL SUELDO: ", "ERROR. ", 1, 60000);
+                if( employee_setSueldo( (sEmployee*) ll_get(pArrayListEmployee, i), enteroAuxiliar) )
+                {
+                    able = 1;
+                    printf("\nMODIFICACION REALIZADA CON EXITO!\n");
+                }
+                break;
+            case 4:
+                printf("\nSE HA CANCELADO LA MODIFICACION!\n");
+                break;
+            default:
+                printf("OPCION INVALIDA!\n");
+            }
+        }
+
+    }
+
+    if( !flag )
+    {
+        printf("\nNO SE ENCONTRO NINGUN CLIENTE CON ESE CODIGO!\n");
+    }
+
+    printf("\n");
+
+    return able;
 }
 
 /** \brief Baja de empleado
@@ -213,6 +285,7 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
     if( pArrayListEmployee != NULL )
     {
         system("cls");
+        printf("ID          NOMBRE  HORAS T.  SUELDO\n");
 
         for(int i=0; i<ll_len(pArrayListEmployee); i++)
         {
