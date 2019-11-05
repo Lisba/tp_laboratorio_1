@@ -97,7 +97,7 @@
 1572750022 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp3\win_64\lisba_utn.c
 	"lisba_utn.h"
 
-1572838790 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\controller.c
+1572922728 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\controller.c
 	<stdio.h>
 	<stdlib.h>
 	"LinkedList.h"
@@ -107,7 +107,7 @@
 
 1533133022 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\linkedlist.h
 
-1572742045 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\employee.h
+1572923770 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\employee.h
 	"lisba_utn.h"
 	"LinkedList.h"
 
@@ -118,14 +118,14 @@
 
 1533133022 c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\parser.h
 
-1572837946 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\employee.c
+1572923783 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\employee.c
 	"Employee.h"
 	"LinkedList.h"
 
 1572797172 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\lisba_utn.c
 	"lisba_utn.h"
 
-1572836628 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\main.c
+1572922299 source:c:\users\usuario\documents\sistemas-utn\programación i y laboratorio i\tp_laboratorio_1\tp_3_linkedlist\main.c
 	<stdio.h>
 	<stdlib.h>
 	<conio.h>

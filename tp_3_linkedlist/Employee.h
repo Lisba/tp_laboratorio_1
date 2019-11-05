@@ -31,11 +31,14 @@ int employee_setSueldo(sEmployee* this,int sueldo);
 int employee_getSueldo(sEmployee* this,int* sueldo);
 
 int printEmployee (sEmployee* employee);
+int printEmployees(LinkedList* pArrayListEmployee);
 int validateEmployee(sEmployee* employee);
 
 int IdAleatorio(void* this);
 
-int arrayIniciado(LinkedList* linkedList);
 int ordenarPorId(void* emp1, void* emp2);
+int ordenarPorNombre(void* emp1, void* emp2);
+int ordenarPorHorasTrabajadas(void* emp1, void* emp2);
+int ordenarPorSueldo(void* emp1, void* emp2);
 
 #endif // employee_H_INCLUDED

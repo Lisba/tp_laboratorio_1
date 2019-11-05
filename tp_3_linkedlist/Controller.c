@@ -282,16 +282,9 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 {
     int able = 0;
 
-    if( pArrayListEmployee != NULL )
+    if( printEmployees(pArrayListEmployee) )
     {
-        system("cls");
-        printf("ID          NOMBRE  HORAS T.  SUELDO\n");
-
-        for(int i=0; i<ll_len(pArrayListEmployee); i++)
-        {
-            printEmployee(((sEmployee*) ll_get(pArrayListEmployee, i)));
-            able = 1;
-        }
+        able = 1;
     }
 
     return able;

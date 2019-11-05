@@ -180,6 +180,25 @@ int printEmployee(sEmployee* this)
     return able;
 }
 
+int printEmployees(LinkedList* pArrayListEmployee)
+{
+    int able = 0;
+
+    if( pArrayListEmployee != NULL )
+    {
+        system("cls");
+        printf("ID          NOMBRE  HORAS T.  SUELDO\n");
+
+        for(int i=0; i<ll_len(pArrayListEmployee); i++)
+        {
+            printEmployee(((sEmployee*) ll_get(pArrayListEmployee, i)));
+            able = 1;
+        }
+    }
+
+    return able;
+}
+
 int validateEmployee(sEmployee* this)
 {
     int isUsed = 0;
@@ -213,18 +232,6 @@ int IdAleatorio(void* this)
     return value;
 }
 
-int arrayIniciado(LinkedList* linkedList)
-{
-    int iniciado = 0;
-
-    if( ll_len(linkedList) > 0 )
-    {
-        iniciado = 1;
-    }
-
-    return iniciado;
-}
-
 int ordenarPorId(void* emp1, void* emp2)
 {
     int value;
@@ -233,6 +240,75 @@ int ordenarPorId(void* emp1, void* emp2)
     sEmployee* employee2 = (sEmployee*) emp2;
 
     if( employee1->id > employee2->id )
+    {
+        value = 1;
+    }
+    else if( (*employee1).id < (*employee2).id )
+    {
+        value = -1;
+    }
+    else
+    {
+        value = 0;
+    }
+
+    return value;
+}
+
+int ordenarPorNombre(void* emp1, void* emp2)
+{
+    int value;
+
+    sEmployee* employee1 = (sEmployee*) emp1;
+    sEmployee* employee2 = (sEmployee*) emp2;
+
+    if( strcmp( (*employee1).nombre, (*employee2).nombre ) > 0 )
+    {
+        value = 1;
+    }
+    else if( strcmp( (*employee1).nombre, (*employee2).nombre ) < 0 )
+    {
+        value = -1;
+    }
+    else
+    {
+        value = 0;
+    }
+
+    return value;
+}
+
+int ordenarPorHorasTrabajadas(void* emp1, void* emp2)
+{
+    int value;
+
+    sEmployee* employee1 = (sEmployee*) emp1;
+    sEmployee* employee2 = (sEmployee*) emp2;
+
+    if( (*employee2).horasTrabajadas > (*employee2).horasTrabajadas )
+    {
+        value = 1;
+    }
+    else if( employee1->id < employee2->id )
+    {
+        value = -1;
+    }
+    else
+    {
+        value = 0;
+    }
+
+    return value;
+}
+
+int ordenarPorSueldo(void* emp1, void* emp2)
+{
+    int value;
+
+    sEmployee* employee1 = (sEmployee*) emp1;
+    sEmployee* employee2 = (sEmployee*) emp2;
+
+    if( (*employee2).sueldo > (*employee2).sueldo )
     {
         value = 1;
     }
