@@ -65,7 +65,7 @@ int main()
                 }
                 break;
             case 4:
-                if( arrayIniciado(listaEmpleados) )
+                if( !ll_isEmpty(listaEmpleados) )
                 {
                     controller_editEmployee(listaEmpleados);
                     system("pause");
@@ -77,7 +77,7 @@ int main()
                 }
                 break;
             case 5:
-                if( arrayIniciado(listaEmpleados) )
+                if( !ll_isEmpty(listaEmpleados) )
                 {
                     controller_removeEmployee(listaEmpleados);
                     system("pause");
@@ -89,7 +89,7 @@ int main()
                 }
                 break;
             case 6:
-                if( arrayIniciado(listaEmpleados) )
+                if( !ll_isEmpty(listaEmpleados) )
                 {
                     controller_ListEmployee(listaEmpleados);
                     system("pause");
@@ -114,7 +114,7 @@ int main()
                 break;
             case 8:
                 system("cls");
-                if ( arrayIniciado(listaEmpleados) )
+                if ( !ll_isEmpty(listaEmpleados) )
                 {
                     if( controller_saveAsText("data.csv", listaEmpleados) )
                     {
@@ -135,7 +135,7 @@ int main()
                 break;
             case 9:
                 system("cls");
-                if ( arrayIniciado(listaEmpleados) )
+                if ( !ll_isEmpty(listaEmpleados) )
                 {
                     if( controller_saveAsBinary("data.bin", listaEmpleados) )
                     {
