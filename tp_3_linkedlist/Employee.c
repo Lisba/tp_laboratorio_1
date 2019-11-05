@@ -224,3 +224,26 @@ int arrayIniciado(LinkedList* linkedList)
 
     return iniciado;
 }
+
+int ordenarPorId(void* emp1, void* emp2)
+{
+    int value;
+
+    sEmployee* employee1 = (sEmployee*) emp1;
+    sEmployee* employee2 = (sEmployee*) emp2;
+
+    if( employee1->id > employee2->id )
+    {
+        value = 1;
+    }
+    else if( employee1->id < employee2->id )
+    {
+        value = -1;
+    }
+    else
+    {
+        value = 0;
+    }
+
+    return value;
+}

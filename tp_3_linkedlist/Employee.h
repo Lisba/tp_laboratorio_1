@@ -36,5 +36,6 @@ int validateEmployee(sEmployee* employee);
 int IdAleatorio(void* this);
 
 int arrayIniciado(LinkedList* linkedList);
+int ordenarPorId(void* emp1, void* emp2);
 
 #endif // employee_H_INCLUDED

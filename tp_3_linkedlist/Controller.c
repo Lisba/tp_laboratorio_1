@@ -306,7 +306,21 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
  */
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
-    return 1;
+    int able = 0;
+
+    if(pArrayListEmployee != NULL)
+    {
+        if( ( ll_sort(pArrayListEmployee, ordenarPorId, 0) ) == 0 )
+        {
+            printf("\nSE ORDENO CORRECTAMENTE!\n\n");
+        }
+        else
+        {
+            printf("\nNO SE PUDO ORDENAR LA LINKEDLIST!\n\n");
+        }
+    }
+
+    return able;
 }
 
 /** \brief Guarda los datos de los empleados en el archivo data.csv (modo texto).
