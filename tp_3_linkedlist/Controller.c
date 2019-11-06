@@ -79,7 +79,6 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListEmployee)
 int controller_addEmployee(LinkedList* pArrayListEmployee)
 {
     int able = 0;
-    int id;
     char nombre[128];
     int horasTrabajadas;
     int sueldo;
@@ -87,19 +86,16 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
     employee = employee_new();
 
-    if( IdAleatorio(pArrayListEmployee) != -1 )
+    if(employee != NULL)
     {
-        id = IdAleatorio(pArrayListEmployee);
         able = 1;
     }
 
     system("cls");
     fflush(stdin);
-    getName(nombre, "\nINGRESE EL NOMBRE: ", "Error. Debe contener entre 2 y 128 caracteres. ", 2, 127);
-
-    if( nombre == NULL || able == 0)
+    if( getName(nombre, "\nINGRESE EL NOMBRE: ", "Error. Debe contener entre 2 y 128 caracteres. ", 2, 127) && able )
     {
-        able = 0;
+        able = 1;
     }
 
     system("cls");
@@ -110,13 +106,27 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
 
     if( able )
     {
-        if( employee_setId(employee, id) && employee_setNombre(employee, nombre) && employee_setHorasTrabajadas(employee, horasTrabajadas) && employee_setSueldo(employee, sueldo) )
+        if( employee_setId(employee, -1) && employee_setNombre(employee, nombre) && employee_setHorasTrabajadas(employee, horasTrabajadas) && employee_setSueldo(employee, sueldo) )
         {
             if( !ll_add(pArrayListEmployee, employee) )
             {
                 able = 1;
+                printf("\nALTA EXITOSA!\n\n");
+            }
+            else
+            {
+                able = 0;
             }
         }
+        else
+        {
+            able = 0;
+        }
+    }
+
+    if( !able )
+    {
+        printf("\nOCURRIO UN PROBLEMA DURANTE EL ALTA!\n\n");
     }
 
     return able;
@@ -303,6 +313,8 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 
     if(pArrayListEmployee != NULL)
     {
+        printf("\nESPERE MIENTRAS SE ORDENA LA LINKEDLIST...\n");
+
         if( ( ll_sort(pArrayListEmployee, ordenarPorId, 0) ) == 0 )
         {
             printf("\nSE ORDENO CORRECTAMENTE!\n\n");
@@ -397,7 +409,7 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
         {
             for(int i=0; i<tam; i++)
             {
-                employee = ll_get(pArrayListEmployee, i);
+                employee = (sEmployee*) ll_get(pArrayListEmployee, i);
 
                 if( employee != NULL )
                 {

@@ -29,6 +29,7 @@ int parser_EmployeeFromText(FILE* pFile , LinkedList* pArrayListEmployee)
             else
             {
                 employee = employee_newParametros(buffer[0], buffer[1], buffer[2], buffer[3]);
+
                 if(employee != NULL && validateEmployee(employee))
                 {
                     ll_add(pArrayListEmployee, employee);

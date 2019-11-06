@@ -332,7 +332,7 @@ int isAlphabetic(char* string)
 
 int getName(char* input, char message[], char eMessage[], int lowLimit, int highLimit)
 {
-    int able = 0;
+    int able = 1;
     char aux[highLimit];
 
     do

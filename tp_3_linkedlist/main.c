@@ -25,42 +25,61 @@ int main()
 {
     char salir = 'n';
     LinkedList* listaEmpleados = ll_newLinkedList();
+    char datosCargados = '0';
     do{
         switch(menu())
         {
             case 1:
-                if( controller_loadFromText("data.csv", listaEmpleados) )
+                if( datosCargados == '0' )
                 {
-                    printf("\nDATOS CARGADOS DESDE EL ARCHIVO DE TEXTO EXITOSAMENTE!\n\n");
-                    system("pause");
+                    if( controller_loadFromText("data.csv", listaEmpleados) )
+                    {
+                        datosCargados = '1';
+                        printf("\nDATOS CARGADOS DESDE EL ARCHIVO DE TEXTO EXITOSAMENTE!\n\n");
+                        system("pause");
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO CARGAR NINGUN DATO DESDE EL ARCHIVO DE TEXTO!\n\n");
+                        system("pause");
+                    }
                 }
                 else
                 {
-                    printf("\nNO SE PUDO CARGAR NINGUN DATO DESDE EL ARCHIVO DE TEXTO!\n\n");
+                    printf("\nYA HAN SIDO CARGADOS LOS DATOS DESDE EL ARCHIVO!\n\n");
                     system("pause");
                 }
                 break;
             case 2:
-                if( controller_loadFromBinary("data.bin", listaEmpleados) )
+                if( datosCargados == '0' )
                 {
-                    printf("\nDATOS CARGADOS DESDE EL ARCHIVO BINARIO EXITOSAMENTE!\n\n");
-                    system("pause");
+                    if( controller_loadFromBinary("data.bin", listaEmpleados) )
+                    {
+                        datosCargados = '1';
+                        printf("\nDATOS CARGADOS DESDE EL ARCHIVO BINARIO EXITOSAMENTE!\n\n");
+                        system("pause");
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO CARGAR NINGUN DATO DESDE EL ARCHIVO BINARIO!\n\n");
+                        system("pause");
+                    }
                 }
                 else
                 {
-                    printf("\nNO SE PUDO CARGAR NINGUN DATO DESDE EL ARCHIVO BINARIO!\n\n");
+                    printf("\nYA HAN SIDO CARGADOS LOS DATOS DESDE EL ARCHIVO!\n\n");
                     system("pause");
                 }
                 break;
             case 3:
-                if( controller_addEmployee(listaEmpleados) )
+                if( !ll_isEmpty(listaEmpleados) )
                 {
-                    printf("\nALTA EXITOSA!\n\n");
+                    controller_addEmployee(listaEmpleados);
                     system("pause");
                 }
                 else
                 {
-                    printf("\nOCURRIO UN PROBLEMA DURANTE EL ALTA!\n\n");
+                    printf("\nPRIMERO DEBE CARGAR LOS DATOS DESDE EL ARCHIVO!\n\n");
                     system("pause");
                 }
                 break;
@@ -72,7 +91,7 @@ int main()
                 }
                 else
                 {
-                    printf("\nNO HAY DATOS CARGADOS PARA MODIFICAR!\n\n");
+                    printf("\nNO HAY DATOS CARGADOS!\n\n");
                     system("pause");
                 }
                 break;
@@ -84,7 +103,7 @@ int main()
                 }
                 else
                 {
-                    printf("\nNO HAY DATOS CARGADOS PARA ELIMINAR!\n\n");
+                    printf("\nNO HAY DATOS CARGADOS!\n\n");
                     system("pause");
                 }
                 break;
@@ -96,7 +115,7 @@ int main()
                 }
                 else
                 {
-                    printf("\nNO HAY DATOS CARGADOS PARA MOSTRAR!\n\n");
+                   printf("\nNO HAY DATOS CARGADOS!\n\n");
                     system("pause");
                 }
                 break;
@@ -108,12 +127,11 @@ int main()
                 }
                 else
                 {
-                    printf("\nNO HAY DATOS CARGADOS PARA MOSTRAR!\n\n");
+                    printf("\nNO HAY DATOS CARGADOS!\n\n");
                     system("pause");
                 }
                 break;
             case 8:
-                system("cls");
                 if ( !ll_isEmpty(listaEmpleados) )
                 {
                     if( controller_saveAsText("data.csv", listaEmpleados) )
@@ -129,28 +147,27 @@ int main()
                 }
                 else
                 {
-                    printf("\nNO HAY DATOS CARGADOS PARA GUARDAR!\n\n");
+                    printf("\nNO HAY DATOS CARGADOS!\n\n");
                     system("pause");
                 }
                 break;
             case 9:
-                system("cls");
                 if ( !ll_isEmpty(listaEmpleados) )
                 {
                     if( controller_saveAsBinary("data.bin", listaEmpleados) )
                     {
-                        printf("\nDatos guardados en el archivo binario exitosamente!n\n");
+                        printf("\nDATOS GUARDADOS EN EL ARCHIVO BINARIO EXITOSAMENTE!\n\n");
                         system("pause");
                     }
                     else
                     {
-                        printf("\nNo se pudieron guardar los datos!\n\n");
+                        printf("\nNO SE PUDO GUARDAR LOS DATOS!\n\n");
                         system("pause");
                     }
                 }
                 else
                 {
-                    printf("\nNo hay empleados cargados para mostrar!\n\n");
+                    printf("\nNO HAY DATOS CARGADOS!\n\n");
                     system("pause");
                 }
                 break;

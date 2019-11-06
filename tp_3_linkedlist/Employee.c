@@ -47,7 +47,7 @@ sEmployee* employee_newParametros(char* idStr, char* nombreStr, char* horasTraba
 
             if(this != NULL)
             {
-                if( ( !employee_setId(this, atoi(idStr)) ) || ( !employee_setNombre(this, nombreStr) ) || ( !employee_setHorasTrabajadas(this, atoi(horasTrabajadasStr)) ) || ( !employee_setSueldo(this, atoi(sueldoStr)) ) )
+                if( !employee_setId(this, atoi(idStr)) || !employee_setNombre(this, nombreStr) || !employee_setHorasTrabajadas(this, atoi(horasTrabajadasStr)) || !employee_setSueldo(this, atoi(sueldoStr)) )
                 {
                         free(this);
                         this = NULL;
@@ -69,10 +69,21 @@ void employee_delete(sEmployee* this)
 int employee_setId(sEmployee* this, int id)
 {
     int able = 0;
+    static int maxId = -1;
 
-    if(this != NULL && id > 0)
+    if(this != NULL)
     {
-        this->id = id;
+        if(id < 0)
+        {
+            maxId++;
+            this->id = maxId;
+        }
+        else if(id > maxId)
+        {
+            this->id = id;
+            maxId = id;
+        }
+
         able = 1;
     }
 
@@ -223,14 +234,14 @@ int validateEmployee(sEmployee* this)
     return isUsed;
 }
 
-int IdAleatorio(void* this)
-{
-    int value = -1;
-
-    value = ll_len(this) + 1;
-
-    return value;
-}
+//int IdAleatorio(void* this)
+//{
+//    int value = -1;
+//
+//    value = ll_len(this) + 1;
+//
+//    return value;
+//}
 
 int ordenarPorId(void* emp1, void* emp2)
 {
