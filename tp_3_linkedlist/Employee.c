@@ -49,7 +49,7 @@ sEmployee* employee_newParametros(char* idStr, char* nombreStr, char* horasTraba
             {
                 if( !employee_setId(this, atoi(idStr)) || !employee_setNombre(this, nombreStr) || !employee_setHorasTrabajadas(this, atoi(horasTrabajadasStr)) || !employee_setSueldo(this, atoi(sueldoStr)) )
                 {
-                        free(this);
+                        employee_delete(this);
                         this = NULL;
                 }
             }
@@ -78,7 +78,7 @@ int employee_setId(sEmployee* this, int id)
             maxId++;
             this->id = maxId;
         }
-        else if(id > maxId)
+        else
         {
             this->id = id;
             maxId = id;
@@ -185,7 +185,7 @@ int printEmployee(sEmployee* this)
 {
     int able = 0;
 
-    printf("%d %16s %6d %10d\n", this->id, this->nombre, this->horasTrabajadas, this->sueldo);
+    printf("%d %18s %9d %12d\n", this->id, this->nombre, this->horasTrabajadas, this->sueldo);
     able = 1;
 
     return able;
@@ -198,7 +198,7 @@ int printEmployees(LinkedList* pArrayListEmployee)
     if( pArrayListEmployee != NULL )
     {
         system("cls");
-        printf("ID          NOMBRE  HORAS T.  SUELDO\n");
+        printf("ID             NOMBRE      HORAS T.    SUELDO\n");
 
         for(int i=0; i<ll_len(pArrayListEmployee); i++)
         {
@@ -233,15 +233,6 @@ int validateEmployee(sEmployee* this)
 
     return isUsed;
 }
-
-//int IdAleatorio(void* this)
-//{
-//    int value = -1;
-//
-//    value = ll_len(this) + 1;
-//
-//    return value;
-//}
 
 int ordenarPorId(void* emp1, void* emp2)
 {
@@ -296,11 +287,11 @@ int ordenarPorHorasTrabajadas(void* emp1, void* emp2)
     sEmployee* employee1 = (sEmployee*) emp1;
     sEmployee* employee2 = (sEmployee*) emp2;
 
-    if( (*employee2).horasTrabajadas > (*employee2).horasTrabajadas )
+    if( (*employee1).horasTrabajadas > (*employee2).horasTrabajadas )
     {
         value = 1;
     }
-    else if( employee1->id < employee2->id )
+    else if( employee1->horasTrabajadas < employee2->horasTrabajadas )
     {
         value = -1;
     }
@@ -319,11 +310,11 @@ int ordenarPorSueldo(void* emp1, void* emp2)
     sEmployee* employee1 = (sEmployee*) emp1;
     sEmployee* employee2 = (sEmployee*) emp2;
 
-    if( (*employee2).sueldo > (*employee2).sueldo )
+    if( (*employee1).sueldo > (*employee2).sueldo )
     {
         value = 1;
     }
-    else if( employee1->id < employee2->id )
+    else if( employee1->sueldo < employee2->sueldo )
     {
         value = -1;
     }
@@ -333,4 +324,26 @@ int ordenarPorSueldo(void* emp1, void* emp2)
     }
 
     return value;
+}
+
+int eliminarLinkedListEntera(LinkedList* this)
+{
+    int able = 0;
+    int tam = ll_len(this);
+
+    for(int i=0; i < tam; i++)
+    {
+        if( ll_pop(this, i) != NULL )
+        {
+            employee_delete(ll_pop(this, i));
+            able = 1;
+        }
+    }
+
+    if( able )
+    {
+        ll_deleteLinkedList(this);
+    }
+
+    return able;
 }

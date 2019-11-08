@@ -159,16 +159,16 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
         {
             flag = 1;
             printf("\n");
-            printf("ID          NOMBRE  HORAS T.  SUELDO\n");
+            printf("ID             NOMBRE      HORAS T.    SUELDO\n");
             printEmployee((sEmployee*) ll_get(pArrayListEmployee, i));
             printf("\n");
 
-            printf("1) MODIFICAR NOMBRE.\n");
-            printf("2) MODIFICAR HORAS TRABAJADAS.\n");
-            printf("3) MODIFCAR SUELDO.\n");
-            printf("4) SALIR.\n\n");
+            printf("1) MODIFICAR NOMBRE\n");
+            printf("2) MODIFICAR HORAS TRABAJADAS\n");
+            printf("3) MODIFCAR SUELDO\n");
+            printf("4) SALIR\n\n");
 
-            getInt(&datoAModificar, "SELECCIONE UNA OPCION: ", "ERROR. DEBE INGRESAR ENTRE 1 Y 3", 1, 4);
+            getInt(&datoAModificar, "SELECCIONE UNA OPCION: ", "ERROR. DEBE INGRESAR ENTRE 1 Y 4 ", 1, 4);
 
             switch(datoAModificar)
             {
@@ -310,19 +310,174 @@ int controller_ListEmployee(LinkedList* pArrayListEmployee)
 int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
     int able = 0;
+    int opcion;
+    char respuesta = 'n';
+    int opcionPorId;
+    int opcionPorNombre;
+    int opcionPorHorasTrabajadas;
+    int opcionPorSueldo;
 
     if(pArrayListEmployee != NULL)
     {
-        printf("\nESPERE MIENTRAS SE ORDENA LA LINKEDLIST...\n");
+            system("cls");
+            printf("\nCOMO DESEA ORDENAR LA LISTA?\n\n");
+            printf("1) POR ID\n");
+            printf("2) POR NOMBRE\n");
+            printf("3) POR HORAS TRABAJADAS\n");
+            printf("4) POR SUELDO\n");
+            printf("5) SALIR\n\n");
 
-        if( ( ll_sort(pArrayListEmployee, ordenarPorId, 0) ) == 0 )
-        {
-            printf("\nSE ORDENO CORRECTAMENTE!\n\n");
-        }
-        else
-        {
-            printf("\nNO SE PUDO ORDENAR LA LINKEDLIST!\n\n");
-        }
+            getInt(&opcion, "INGRESE OPCION: ", "ERROR. OPCION INVALIDA! ", 1, 5);
+
+            switch(opcion)
+            {
+            case 1:
+                printf("\n1) ASCENDENTE\n");
+                printf("2) DESCENDENTE\n\n");
+                getInt(&opcionPorId, "INGRESE OPCION: ", "ERROR. OPCION INVALIDA! ", 1, 2);
+                switch(opcionPorId)
+                {
+                case 1:
+                    printf("\nESPERE MIENTRAS SE ORDENA LA LINKEDLIST...\n");
+                    if( ( ll_sort(pArrayListEmployee, ordenarPorId, 1) ) == 0 )
+                    {
+                        printf("\nSE ORDENO CORRECTAMENTE!\n\n");
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO ORDENAR LA LINKEDLIST!\n\n");
+                    }
+                    break;
+
+                case 2:
+                    printf("\nESPERE MIENTRAS SE ORDENA LA LINKEDLIST...\n");
+                    if( ( ll_sort(pArrayListEmployee, ordenarPorId, 0) ) == 0 )
+                    {
+                        printf("\nSE ORDENO CORRECTAMENTE!\n\n");
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO ORDENAR LA LINKEDLIST!\n\n");
+                    }
+                    break;
+                default:
+                    printf("OPCION INVALIDA!\n");
+                    break;
+                }
+                break;
+
+            case 2:
+                printf("\n1) ASCENDENTE\n");
+                printf("2) DESCENDENTE\n\n");
+                getInt(&opcionPorNombre, "INGRESE OPCION: ", "ERROR. OPCION INVALIDA! ", 1, 2);
+                switch(opcionPorNombre)
+                {
+                case 1:
+                    printf("\nESPERE MIENTRAS SE ORDENA LA LINKEDLIST...\n");
+                    if( ( ll_sort(pArrayListEmployee, ordenarPorNombre, 1) ) == 0 )
+                    {
+                        printf("\nSE ORDENO CORRECTAMENTE!\n\n");
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO ORDENAR LA LINKEDLIST!\n\n");
+                    }
+                    break;
+
+                case 2:
+                    printf("\nESPERE MIENTRAS SE ORDENA LA LINKEDLIST...\n");
+                    if( ( ll_sort(pArrayListEmployee, ordenarPorNombre, 0) ) == 0 )
+                    {
+                        printf("\nSE ORDENO CORRECTAMENTE!\n\n");
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO ORDENAR LA LINKEDLIST!\n\n");
+                    }
+                    break;
+                default:
+                    printf("OPCION INVALIDA!\n");
+                    break;
+                }
+                break;
+
+            case 3:
+                printf("\n1) ASCENDENTE\n");
+                printf("2) DESCENDENTE\n\n");
+                getInt(&opcionPorHorasTrabajadas, "INGRESE OPCION: ", "ERROR. OPCION INVALIDA! ", 1, 2);
+                switch(opcionPorHorasTrabajadas)
+                {
+                case 1:
+                    printf("\nESPERE MIENTRAS SE ORDENA LA LINKEDLIST...\n");
+                    if( ( ll_sort(pArrayListEmployee, ordenarPorHorasTrabajadas, 1) ) == 0 )
+                    {
+                        printf("\nSE ORDENO CORRECTAMENTE!\n\n");
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO ORDENAR LA LINKEDLIST!\n\n");
+                    }
+                    break;
+
+                case 2:
+                    printf("\nESPERE MIENTRAS SE ORDENA LA LINKEDLIST...\n");
+                    if( ( ll_sort(pArrayListEmployee, ordenarPorHorasTrabajadas, 0) ) == 0 )
+                    {
+                        printf("\nSE ORDENO CORRECTAMENTE!\n\n");
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO ORDENAR LA LINKEDLIST!\n\n");
+                    }
+                    break;
+                default:
+                    printf("OPCION INVALIDA!\n");
+                    break;
+                }
+                break;
+
+            case 4:
+                printf("\n1) ASCENDENTE\n");
+                printf("2) DESCENDENTE\n\n");
+                getInt(&opcionPorSueldo, "INGRESE OPCION: ", "ERROR. OPCION INVALIDA! ", 1, 2);
+                switch(opcionPorSueldo)
+                {
+                case 1:
+                    printf("\nESPERE MIENTRAS SE ORDENA LA LINKEDLIST...\n");
+                    if( ( ll_sort(pArrayListEmployee, ordenarPorSueldo, 1) ) == 0 )
+                    {
+                        printf("\nSE ORDENO CORRECTAMENTE!\n\n");
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO ORDENAR LA LINKEDLIST!\n\n");
+                    }
+                    break;
+
+                case 2:
+                    printf("\nESPERE MIENTRAS SE ORDENA LA LINKEDLIST...\n");
+                    if( ( ll_sort(pArrayListEmployee, ordenarPorSueldo, 0) ) == 0 )
+                    {
+                        printf("\nSE ORDENO CORRECTAMENTE!\n\n");
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO ORDENAR LA LINKEDLIST!\n\n");
+                    }
+                    break;
+                default:
+                    printf("OPCION INVALIDA!\n");
+                    break;
+                }
+                break;
+
+            case 5:
+                printf("\nSE CANCELO EL ORDENAMIENTO!\n\n");
+                break;
+            default:
+                printf("OPCION INVALIDA\n");
+                break;
+            }
     }
 
     return able;

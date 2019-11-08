@@ -67,6 +67,8 @@ int parser_EmployeeFromBinary(FILE* pFile , LinkedList* pArrayListEmployee)
 
             cant = fread(employee, sizeof(sEmployee), 1, pFile);
 
+            employee_setId(employee, employee->id);
+
             if( validateEmployee(employee) == 1 )
             {
                 ll_add(pArrayListEmployee, employee);
