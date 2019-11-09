@@ -12,9 +12,29 @@ typedef struct
     int sueldo;
 }sEmployee;
 
+/** \brief Muestra un menu en pantalla.
+ *
+ * \return int retorna la opcion seleccionada.
+ *
+ */
 int menu();
 
+/** \brief Reserva espacio en memoria dinamica para un nuevo empleado.
+ *
+ * \return sEmployee* Retorna el puntero a la variable reservada en memoria dinamica.
+ *
+ */
 sEmployee* employee_new();
+
+/** \brief Toma los datos recibidos por parametro en formato string y los parsea y carga en la estructura en memoria dinamica.
+ *
+ * \param idStr char*
+ * \param nombreStr char*
+ * \param horasTrabajadasStr char*
+ * \param sueldoStr char*
+ * \return sEmployee* Retorna el puntero a la variable reservada en memoria dinamica con los datos cargados.
+ *
+ */
 sEmployee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldoStr);
 void employee_delete();
 
