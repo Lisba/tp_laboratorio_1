@@ -1,38 +1,144 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "lisba_utn.h"
 
-/** \brief  Pide un numero entero al usuario y valida y retorna el numero entero ingresado.
+ /** \brief  Pide un numero entero al usuario y valida y retorna el numero entero ingresado.
  *
  * \param input int* Variable puntero origen-destino.
  * \param message[] char mensaje a mostrar al usuario.
  * \param eMessage[] char mensaje a mostrar en caso de ingresar dato invalido.
  * \param lowLimit int rango limite inferior.
  * \param highLimit int rango limite superior.
- * \return int retorna un estado en caso de poder o no ejecutar la operacion.
- *
+ * \return int Devuelve un estado (1 o 0) indicando si pudo o no efectuar la operacion respectivamente.
  */
 int getInt(int* input, char message[], char eMessage[], int lowLimit, int highLimit)
 {
-    int able = 0;
-    int aux;
-    int validation;
+    int able=0;
+    char auxNumber[10];
+    int numberReturn;
+    int counterDash=0;
+    int isInt;
 
     do
     {
+        isInt = 1;
+        counterDash = 0;
+
         printf("%s", message);
         fflush(stdin);
-        validation = scanf("%i", &aux);
+        scanf("%s", auxNumber);
 
-        if(!validation || aux < lowLimit || aux > highLimit)
+        int i=0;
+        while(auxNumber[i] != '\0')
         {
-            printf("%s", eMessage);
+            if((auxNumber[i] < '0' || auxNumber[i] > '9') && (auxNumber[i] != '-'))
+            {
+               isInt = 0;
+            }
+
+            if(auxNumber[i] == '-')
+            {
+                if(i != 0)
+                {
+                    isInt = 0;
+                }
+            }
+
+            if(auxNumber[i] == '-')
+            {
+                counterDash++;
+            }
+
+            i++;
         }
 
-    } while (!validation || aux < lowLimit || aux > highLimit);
+        if(counterDash > 1)
+        {
+            isInt = 0;
+        }
 
-    *input = aux;
+        numberReturn = atoi(auxNumber);
+
+        if((numberReturn < lowLimit) || (numberReturn > highLimit))
+         {
+             isInt = 0;
+         }
+
+        if(!isInt)
+        {
+            printf(eMessage);
+        }
+
+    } while (!isInt);
+
+    *input = numberReturn;
+
+    able = 1;
+
+    return able;
+}
+
+int getLong(long* input, char message[], char eMessage[], int lowLimit, int highLimit)
+{
+    int able=0;
+    char auxNumber[10];
+    long numberReturn;
+    int counterDash=0;
+    int isInt;
+
+    do
+    {
+        isInt = 1;
+        counterDash = 0;
+
+        printf("%s", message);
+        fflush(stdin);
+        scanf("%s", auxNumber);
+
+        int i=0;
+        while(auxNumber[i] != '\0')
+        {
+            if((auxNumber[i] < '0' || auxNumber[i] > '9') && (auxNumber[i] != '-'))
+            {
+               isInt = 0;
+            }
+
+            if(auxNumber[i] == '-')
+            {
+                if(i != 0)
+                {
+                    isInt = 0;
+                }
+            }
+
+            if(auxNumber[i] == '-')
+            {
+                counterDash++;
+            }
+
+            i++;
+        }
+
+        if(counterDash > 1)
+        {
+            isInt = 0;
+        }
+
+        numberReturn = atol(auxNumber);
+
+        if((numberReturn < lowLimit) || (numberReturn > highLimit))
+         {
+             isInt = 0;
+         }
+
+        if(!isInt)
+        {
+            printf(eMessage);
+        }
+
+    } while (!isInt);
+
+    *input = numberReturn;
+
+    able = 1;
 
     return able;
 }
@@ -51,7 +157,7 @@ int getFloat(float* input, char message[], char eMessage[], float lowLimit, floa
 {
     int able = 0;
     char auxChar[100];
-    float aux;
+    float floatReturn;
     int isFloat;
     int dotCounter;
 
@@ -66,7 +172,7 @@ int getFloat(float* input, char message[], char eMessage[], float lowLimit, floa
         int i=0;
         while(auxChar[i] != '\0')
         {
-            if(auxChar[i] < '0' && auxChar[i] > '9' && auxChar[i] != '.')
+            if((auxChar[i] < '0' || auxChar[i] > '9') && (auxChar[i] != '.'))
             {
                 isFloat = 0;
             }
@@ -88,6 +194,13 @@ int getFloat(float* input, char message[], char eMessage[], float lowLimit, floa
             isFloat = 0;
         }
 
+        floatReturn = atof(auxChar);
+
+        if((floatReturn < lowLimit) || (floatReturn > highLimit))
+        {
+            isFloat = 0;
+        }
+
         if(!isFloat)
         {
             printf("%s", eMessage);
@@ -95,9 +208,7 @@ int getFloat(float* input, char message[], char eMessage[], float lowLimit, floa
 
     } while (!isFloat);
 
-        aux = atof(auxChar);
-
-        *input = aux;
+    *input = floatReturn;
 
     return able;
 }
@@ -155,17 +266,209 @@ int getString(char* input, char message[], char eMessage[], int lowLimit, int hi
     {
         printf("%s", message);
         fflush(stdin);
-        fgets(aux, highLimit, stdin);
-        aux[strlen(aux)-1] = '\0';
+        gets(aux);
 
-        if(strlen(aux) < (lowLimit+1))
+        if( (strlen(aux) < (lowLimit)) || (strlen(aux) > (highLimit)) )
         {
             printf("%s", eMessage);
         }
 
-    } while (strlen(aux) < (lowLimit+1));
+    } while ( (strlen(aux) < (lowLimit)) || (strlen(aux) > (highLimit)) );
 
     strcpy(input, aux);
+
+    return able;
+}
+
+int isNumeric(char* string)
+{
+    int isNum = 0;
+    int i = 0;
+
+    if(string != NULL)
+    {
+        while(string[i] != '\0')
+        {
+            if(string[i] < '0' || string[i] > '9')
+            {
+                break;
+            }
+            i++;
+        }
+
+        if(string[i] == '\0')
+        {
+            isNum = 1;
+        }
+    }
+
+    return isNum;
+}
+
+int isAlphabetic(char* string)
+{
+    int isAlphabetic = 0;
+    int i = 0;
+
+    if(string != NULL)
+    {
+        while(string[i] != '\0')
+        {
+            if( (string[i] < 'A' || string[i] > 'Z') && (string[i] < 'a' || string[i] > 'z') )
+            {
+                break;
+            }
+            i++;
+        }
+
+        if(string[i] == '\0')
+        {
+            isAlphabetic = 1;
+        }
+    }
+
+    return isAlphabetic;
+}
+
+int getName(char* input, char message[], char eMessage[], int lowLimit, int highLimit)
+{
+    int able = 1;
+    char aux[highLimit];
+
+    do
+    {
+        printf("%s", message);
+        fflush(stdin);
+        scanf("%s", aux);
+
+        if( !isAlphabetic(aux) )
+        {
+            printf("%s", eMessage);
+        }
+        else if( (strlen(aux) < (lowLimit)) || (strlen(aux) > (highLimit)) )
+        {
+            printf("%s", eMessage);
+        }
+
+    } while ( !isAlphabetic(aux) || strlen(aux) < (lowLimit) || strlen(aux) > (highLimit) );
+
+    strcpy(input, aux);
+
+    return able;
+}
+
+/** \brief Pide un telefono al usuario, valida y retorna el telefono ingresado.
+ *
+ * \param input char* Variable puntero origen-destino.
+ * \param message[] char Mensaje a mostrar al usuario.
+ * \param eMessage[] char Mensaje a mostrar en caso de ingresar dato invalido.
+ * \param lowLimit int Rango limite inferior.
+ * \param highLimit int Ranfo limite superior.
+ * \return int Devuelve un estado (1 o 0) indicando si pudo o no efectuar la operacion respectivamente.
+ *
+ */
+int getPhone(char* input, char message[], char eMessage[], int lowLimit, int highLimit)
+{
+    int able=0;
+    char auxNumber[21];
+    int counterDash;
+    int counterSpace;
+    int isPhone;
+
+    do
+    {
+        isPhone = 1;
+        counterDash = 0;
+        counterSpace = 0;
+
+        printf("%s", message);
+        fflush(stdin);
+        scanf("%[^\n]", auxNumber);
+
+        int i=0;
+        while(auxNumber[i] != '\0')
+        {
+            if((auxNumber[i] < '0' || auxNumber[i] > '9') && (auxNumber[i] != '-') && (auxNumber[i] != ' '))
+            {
+               isPhone = 0;
+            }
+
+            if(auxNumber[i] == ' ')
+            {
+                counterSpace++;
+            }
+
+            if(auxNumber[i] == '-')
+            {
+                counterDash++;
+            }
+
+            i++;
+        }
+
+        if(counterDash > 2)
+        {
+            isPhone = 0;
+        }
+
+        if(counterSpace > 2)
+        {
+            isPhone = 0;
+        }
+
+        if((strlen(auxNumber) < lowLimit) || (strlen(auxNumber) > highLimit))
+         {
+             isPhone = 0;
+         }
+
+        if(!isPhone)
+        {
+            printf(eMessage);
+        }
+
+    } while (!isPhone);
+
+    strcpy(input, auxNumber);
+
+    able = 1;
+
+    return able;
+}
+
+/** \brief  Pide, valida y retorna un numero de DNI.
+ *
+ * \param input char* Variable puntero origen-destino.
+ * \param message[] char mensaje a mostrar al usuario.
+ * \param eMessage[] char mensaje a mostrar en caso de ingresar dato invalido.
+ * \return int retorna un estado en caso de poder o no ejecutar la operacion.
+ *
+ */
+int getDni(char* input, char message[], char eMessage[])
+{
+    int able = 0;
+    char aux[11];
+    int i=0;
+
+    do
+    {
+        printf("%s", message);
+        fflush(stdin);
+        gets(aux);
+
+        while(aux[i] != '\0')
+        {
+            if( (strlen(aux) < (6) || strlen(aux) > (10)) && (aux[i] < '0' || aux[i] > '9') )
+            {
+                printf("%s", eMessage);
+            }
+
+            i++;
+        }
+
+    } while ( (strlen(aux) < (6)) || (strlen(aux) > (10)) );
+
+    strcpy(input, aux);
+    able = 1;
 
     return able;
 }
@@ -259,10 +562,10 @@ long int factorial(float number) //Recibe un flotante pero toma en cuenta solo l
     return result;
 }
 
-/** \brief
+/** \brief Pide un nombre y un apellido al usuario y lo muestra concatenado separado por una coma un un espacio.
  *
  * \param nameLastName[] char Vector donde se guardará el nombre y apellido.
- * \return void No retorna ya que recibe la variable por referencia (modifica la original).
+ * \return void
  *
  */
 void getNameLastName(char nameLastName[])
@@ -302,4 +605,102 @@ void getNameLastName(char nameLastName[])
     strcpy(nameLastName, nombre);
     strcat(nameLastName, ", ");
     strcat(nameLastName, apellido);
+}
+
+//----------------------------------------------------------------------------------------------------------
+//*******************************Paralells Vectors***************************************
+//----------------------------------------------------------------------------------------------------------
+
+void pedirAlumno(int legajo[], int edad[], char sexo[], int nota1[], int nota2[], float promedio[], int tam)
+{
+
+    for(int i=0; i<tam; i++)
+    {
+        printf("Ingrese el legajo: ");
+        scanf("%d", &legajo[i]);
+
+        printf("Ingrese la edad: ");
+        scanf("%d", &edad[i]);
+
+        printf("Ingrese el sexo: ");
+        fflush(stdin);
+        scanf("%c", &sexo[i]);
+
+        printf("Ingrese la nota1: ");
+        scanf("%d", &nota1[i]);
+
+        printf("Ingrese la nota2: ");
+        scanf("%d", &nota2[i]);
+
+        promedio[i] = (float) (nota1[i] + nota2[i]) / 2;
+    }
+}
+
+void mostrarUnAlumno(int legajo, int edad, char sexo, int nota1, int nota2, float promedio)
+{
+     printf("%d\t%d\t%c\t%d\t%d\t%.3f\n", legajo, edad, sexo, nota1, nota2, promedio);
+}
+
+void mostrarAlumnos(int legajo[], int edad[], char sexo[], int nota1[], int nota2[], float promedio[], int tam)
+{
+    printf("\nleg:\tedad:\tsexo:\tn1:\tn2:\tpromedio:\n\n");
+    for(int i=0; i<tam; i++)
+    {
+        mostrarUnAlumno(legajo[i], edad[i], sexo[i], nota1[i], nota2[i], promedio[i]);
+    }
+}
+
+void ordenarAlumnos(int legajo[], int edad[], char sexo[], int nota1[], int nota2[], float promedio[], int tam)
+{
+
+    int auxInt;
+    char auxChar;
+    float auxFloat;
+    int swap = 0;
+
+    for(int i=0; i<tam-1; i++)
+    {
+
+        for(int j=i+1; j<tam; j++)
+        {
+
+            if(sexo[i] > sexo[j])
+            {
+                swap = 1;
+
+            } else if (sexo[i] == sexo[j] && legajo[i] > legajo[j])
+            {
+                swap = 1;
+            }
+
+            if (swap == 1)
+            {
+                auxInt = legajo[i];
+                legajo[i] = legajo[j];
+                legajo[j] = auxInt;
+
+                auxInt = edad[i];
+                edad[i] = edad[j];
+                edad[j] = auxInt;
+
+                auxChar = sexo[i];
+                sexo[i] = sexo[j];
+                sexo[j] = auxChar;
+
+                auxInt = nota1[i];
+                nota1[i] = nota1[j];
+                nota1[j] = auxInt;
+
+                auxInt = nota2[i];
+                nota2[i] = nota2[j];
+                nota2[j] = auxInt;
+
+                auxFloat = promedio[i];
+                promedio[i] = promedio[j];
+                promedio[j] = auxFloat;
+
+                swap = 0;
+            }
+        }
+    }
 }
