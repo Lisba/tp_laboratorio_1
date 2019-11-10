@@ -170,6 +170,12 @@ int ll_add(LinkedList* this, void* pElement)
 {
     int returnAux = -1;
 
+    if(this != NULL)
+    {
+        addNode(this, ll_len(this), pElement);
+        returnAux = 0;
+    }
+
     return returnAux;
 }
 
@@ -184,6 +190,11 @@ int ll_add(LinkedList* this, void* pElement)
 void* ll_get(LinkedList* this, int index)
 {
     void* returnAux = NULL;
+
+    if(this != NULL && index >= 0 && index < ll_len(this))
+    {
+        returnAux = getNode(this, index);
+    }
 
     return returnAux;
 }
