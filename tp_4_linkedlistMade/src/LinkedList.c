@@ -102,13 +102,11 @@ static int addNode(LinkedList* this, int nodeIndex, void* pElement)
 
     Node* nuevoNodo = NULL;
     Node* nodoAnterior = NULL;
-    Node* nodoAux = NULL;
 
     if(this != NULL && nodeIndex >= 0 && nodeIndex <= ll_len(this))
     {
         nuevoNodo = (Node*) malloc(sizeof(Node));
         nodoAnterior = getNode( this, ( nodeIndex-1 ) );
-        nodoAux = getNode(this, nodeIndex);
 
         if(nuevoNodo != NULL)
         {
@@ -189,14 +187,16 @@ int ll_add(LinkedList* this, void* pElement)
  */
 void* ll_get(LinkedList* this, int index)
 {
-    void* returnAux = NULL;
+    Node* returnedNode = NULL;
+    Node* returnedElement = NULL;
 
     if(this != NULL && index >= 0 && index < ll_len(this))
     {
-        returnAux = getNode(this, index);
+        returnedNode = getNode(this, index);
+        returnedElement = returnedNode->pElement;
     }
 
-    return returnAux;
+    return returnedElement;
 }
 
 
