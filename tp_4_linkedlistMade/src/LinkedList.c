@@ -188,7 +188,7 @@ int ll_add(LinkedList* this, void* pElement)
 void* ll_get(LinkedList* this, int index)
 {
     Node* returnedNode = NULL;
-    Node* returnedElement = NULL;
+    void* returnedElement = NULL;
 
     if(this != NULL && index >= 0 && index < ll_len(this))
     {
@@ -209,9 +209,17 @@ void* ll_get(LinkedList* this, int index)
                         ( 0) Si funciono correctamente
  *
  */
-int ll_set(LinkedList* this, int index,void* pElement)
+int ll_set(LinkedList* this, int index, void* pElement)
 {
     int returnAux = -1;
+    Node* elementToSet = NULL;
+
+    if(this != NULL && index >= 0 && index < ll_len(this))
+    {
+        elementToSet = getNode(this, index);
+        elementToSet->pElement = pElement;
+        returnAux = 0;
+    }
 
     return returnAux;
 }
