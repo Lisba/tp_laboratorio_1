@@ -561,6 +561,41 @@ LinkedList* ll_clone(LinkedList* this)
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order)
 {
     int returnAux =-1;
+    void* pNodeAux = NULL;
+    Node* pNodeI = NULL;
+    Node* pNodeJ = NULL;
+    int tamThis;
+
+    if(this != NULL && pFunc != NULL && order >= 0  && order <= 1)
+    {
+        tamThis = ll_len(this);
+
+        for(int i=0; i<tamThis-1; i++)
+        {
+            for(int j=i+1; j<tamThis; j++)
+            {
+                pNodeI = getNode(this, i);
+                pNodeJ = getNode(this, j);
+
+                if(pNodeI != NULL && pNodeJ != NULL)
+                {
+                    if(pFunc(pNodeI->pElement, pNodeJ->pElement) == 1 && order == 1)
+                    {
+                        pNodeAux = pNodeI->pElement;
+                        pNodeI->pElement = pNodeJ->pElement;
+                        pNodeJ->pElement = pNodeAux;
+                    }
+                    else if(pFunc(pNodeI->pElement, pNodeJ->pElement) == -1 && order == 0)
+                    {
+                        pNodeAux = pNodeI->pElement;
+                        pNodeI->pElement = pNodeJ->pElement;
+                        pNodeJ->pElement = pNodeAux;
+                    }
+                    returnAux = 0;
+                }
+            }
+        }
+    }
 
     return returnAux;
 
