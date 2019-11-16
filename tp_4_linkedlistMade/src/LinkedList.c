@@ -246,7 +246,6 @@ int ll_remove(LinkedList* this, int index)
                 prevNode->pNextNode = nodeToRemove->pNextNode;
             }
 
-            free(nodeToRemove->pElement);
             free(nodeToRemove);
             (this->size)--;
             returnAux = 0;
