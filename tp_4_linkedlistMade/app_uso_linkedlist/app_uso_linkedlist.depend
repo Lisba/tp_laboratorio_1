@@ -1,0 +1,52 @@
+# depslib dependency file v1.0
+1573186295 source:c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\main.c
+	<stdio.h>
+	<stdlib.h>
+	<conio.h>
+	<string.h>
+	"LinkedList.h"
+	"Controller.h"
+	"Employee.h"
+
+1573269170 c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\linkedlist.h
+
+1533133022 c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\controller.h
+
+1573268336 c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\employee.h
+	"lisba_utn.h"
+	"LinkedList.h"
+
+1572796705 c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\lisba_utn.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1573181732 source:c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\controller.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+	"parser.h"
+	"conio.h"
+
+1533133022 c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\parser.h
+
+1573186295 source:c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\employee.c
+	"Employee.h"
+	"LinkedList.h"
+
+1573081416 source:c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\lisba_utn.c
+	"lisba_utn.h"
+
+1574011059 source:c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\linkedlist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LinkedList.h"
+
+1573172946 source:c:\users\usuario\documents\sistemas-utn\1er cuatrimestre\programación i y laboratorio i\tp_laboratorio_1\tp_4_linkedlistmade\app_uso_linkedlist\parser.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkedList.h"
+	"Employee.h"
+
