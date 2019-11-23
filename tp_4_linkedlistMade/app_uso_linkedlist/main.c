@@ -27,7 +27,7 @@ int main()
     LinkedList* listaEmpleados = ll_newLinkedList();
     char datosCargados = '0';
     do{
-        switch(menu())
+        switch( menu() )
         {
             case 1:
                 if( datosCargados == '0' )
@@ -44,8 +44,7 @@ int main()
                 }
                 else
                 {
-                    eliminarLinkedListEntera(listaEmpleados);
-                    listaEmpleados = ll_newLinkedList();
+                    ll_clear(listaEmpleados);
                     if( controller_loadFromText("data.csv", listaEmpleados) )
                     {
                         datosCargados = '1';
@@ -73,8 +72,7 @@ int main()
                 }
                 else
                 {
-                    eliminarLinkedListEntera(listaEmpleados);
-                    listaEmpleados = ll_newLinkedList();
+                    ll_clear(listaEmpleados);
                     if( controller_loadFromBinary("data.bin", listaEmpleados) )
                     {
                         datosCargados = '1';
@@ -143,6 +141,32 @@ int main()
                 system("pause");
                 break;
             case 8:
+                 if ( !ll_isEmpty(listaEmpleados) )
+                {
+                    controller_CloneLinkedList(listaEmpleados);
+                }
+                else
+                {
+                    printf("\nNO HAY DATOS CARGADOS!\n\n");
+                }
+                system("pause");
+                break;
+            case 9:
+                 if ( !ll_isEmpty(listaEmpleados) )
+                {
+                    if( !ll_deleteLinkedList(listaEmpleados) )
+                    {
+                        printf("\nLISTA ELIMINADA CON EXITO!\n\n");
+                    }
+                    listaEmpleados = ll_newLinkedList();
+                }
+                else
+                {
+                    printf("\nNO HAY DATOS CARGADOS!\n\n");
+                }
+                system("pause");
+                break;
+            case 10:
                 if ( !ll_isEmpty(listaEmpleados) )
                 {
                     if( controller_saveAsText("data.csv", listaEmpleados) )
@@ -160,7 +184,7 @@ int main()
                 }
                 system("pause");
                 break;
-            case 9:
+            case 11:
                 if ( !ll_isEmpty(listaEmpleados) )
                 {
                     if( controller_saveAsBinary("data.bin", listaEmpleados) )
@@ -178,7 +202,7 @@ int main()
                 }
                 system("pause");
                 break;
-            case 10:
+            case 12:
                 printf("Confirma salir? (s/n):");
                 fflush(stdin);
                 salir = getche();

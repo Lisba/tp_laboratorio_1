@@ -83,6 +83,8 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
     int horasTrabajadas;
     int sueldo;
     sEmployee* employee;
+    int respuesta;
+    int indice;
 
     employee = employee_new();
 
@@ -90,44 +92,71 @@ int controller_addEmployee(LinkedList* pArrayListEmployee)
     {
         able = 1;
     }
-
     system("cls");
-    fflush(stdin);
-    if( getName(nombre, "\nINGRESE EL NOMBRE: ", "Error. Debe contener entre 2 y 128 caracteres. ", 2, 127) && able )
+    printf("\nDESEA AGREAR UN NUEVO USUARIO AL FINAL DE LA LISTA O DENTRO DE UN IDICE ESPECIFICO?\n\n");
+    printf("1) AL FINAL DE LA LISTA.\n");
+    printf("2) EN UN INDICE ESPECIFICO.\n");
+    printf("3) SALIR.\n\n");
+    getInt(&respuesta, "INGRESE OPCION: ", "ERROR. OPCION INVALIDA! ", 1, 3);
+
+    if(respuesta != 3 && able)
     {
-        able = 1;
-    }
+        system("cls");
+        fflush(stdin);
+        getName(nombre, "\nINGRESE EL NOMBRE: ", "Error. Debe contener entre 2 y 128 caracteres. ", 2, 127);
+        system("cls");
+        getInt(&horasTrabajadas, "\nINGRESE LAS HORAS TRABAJADAS: ", "Error. Debe estar entre 1 y 1000", 1, 1000);
+        system("cls");
+        getInt(&sueldo, "\nINGRESE EL SUELDO: ", "Error. Debe estar entre 1 y 60000", 1, 60000);
 
-    system("cls");
-    getInt(&horasTrabajadas, "\nINGRESE LAS HORAS TRABAJADAS: ", "Error. Debe estar entre 1 y 1000", 1, 1000);
-
-    system("cls");
-    getInt(&sueldo, "\nINGRESE EL SUELDO: ", "Error. Debe estar entre 1 y 60000", 1, 60000);
-
-    if( able )
-    {
         if( employee_setId(employee, -1) && employee_setNombre(employee, nombre) && employee_setHorasTrabajadas(employee, horasTrabajadas) && employee_setSueldo(employee, sueldo) )
         {
-            if( !ll_add(pArrayListEmployee, employee) )
+            switch(respuesta)
             {
-                able = 1;
-                printf("\nALTA EXITOSA!\n\n");
-            }
-            else
-            {
-                able = 0;
+            case 1:
+                if( !ll_add(pArrayListEmployee, employee) )
+                {
+                    able = 1;
+                    printf("\nALTA EXITOSA!\n\n");
+                }
+                else
+                {
+                    able = 0;
+                }
+                break;
+
+            case 2:
+                system("cls");
+                getInt(&indice, "\nINGRESE EL INDICE: ", "ERROR! ", 0, ll_len(pArrayListEmployee));
+
+                if( !ll_push(pArrayListEmployee, indice, employee) )
+                {
+                    able = 1;
+                    printf("\nALTA EXITOSA!\n\n");
+                }
+                else
+                {
+                    able = 0;
+                }
+                break;
             }
         }
         else
         {
             able = 0;
         }
+
+        if( !able )
+        {
+            printf("\nOCURRIO UN PROBLEMA DURANTE EL ALTA!\n\n");
+        }
+    }
+    else
+    {
+        printf("\nALTA NO REALIZADA!\n\n");
+        able = 0;
     }
 
-    if( !able )
-    {
-        printf("\nOCURRIO UN PROBLEMA DURANTE EL ALTA!\n\n");
-    }
 
     return able;
 }
@@ -147,13 +176,14 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
     int flag = 0;
     char nombreNuevo[128];
     int enteroAuxiliar;
+    int tam = ll_len(pArrayListEmployee);
 
     system("cls");
     printf("**************MODIFICAR EMPLEADO****************\n\n");
 
     getInt(&idToModify, "INGRESE EL ID DEL EMPLEADO A MODIFICAR: ", "ERROR. DEBE INGRESAR ENTRE 1 Y 2000. ", 1, 2000);
 
-    for(int i=0; i<( ll_len(pArrayListEmployee) ); i++)
+    for(int i=0; i<tam; i++)
     {
         if( idToModify == ( (sEmployee*) ll_get(pArrayListEmployee, i) )->id )
         {
@@ -203,7 +233,6 @@ int controller_editEmployee(LinkedList* pArrayListEmployee)
                 printf("OPCION INVALIDA!\n");
             }
         }
-
     }
 
     if( !flag )
@@ -229,12 +258,13 @@ int controller_removeEmployee(LinkedList* pArrayListEmployee)
     int idToSearch;
     char answer = 'n';
     int flag = 0;
+    int tam = ll_len(pArrayListEmployee);
 
     if(pArrayListEmployee != NULL)
     {
         getInt(&idToSearch, "\nINGRESE EL ID DEL EMPLEADO A ELIMINAR: ", "ERROR. ", 1, 10000);
 
-        for(int i=0; i<ll_len(pArrayListEmployee); i++)
+        for(int i=0; i<tam; i++)
         {
             if( idToSearch == ( (sEmployee*) ll_get(pArrayListEmployee, i) )->id )
             {
@@ -311,7 +341,6 @@ int controller_sortEmployee(LinkedList* pArrayListEmployee)
 {
     int able = 0;
     int opcion;
-    char respuesta = 'n';
     int opcionPorId;
     int opcionPorNombre;
     int opcionPorHorasTrabajadas;
@@ -518,7 +547,7 @@ int controller_saveAsText(char* path , LinkedList* pArrayListEmployee)
                 employee_getHorasTrabajadas(employee, &horasTrabajadas);
                 employee_getSueldo(employee, &sueldo);
 
-                fprintf(f, "%d,%s,%d,%d", id, nombre, horasTrabajadas, sueldo);
+                fprintf(f, "%d,%s,%d,%d\n", id, nombre, horasTrabajadas, sueldo);
                 contador++;
             }
 
@@ -588,3 +617,126 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
     return able;
 }
 
+int controller_CloneLinkedList(LinkedList* this)
+{
+    int able = 0;
+    LinkedList* newList = ll_newLinkedList();
+    int response;
+    int minId;
+    int maxId;
+    int minIndex;
+    int maxIndex;
+    int tam;
+
+    if(this != NULL && newList != NULL)
+    {
+        tam = ll_len(this);
+
+        do
+        {
+            system("cls");
+            printf("\n1) CLONAR TODA LA LINKEDLIST.\n");
+            printf("2) CLONAR UNA PARTE DE LA LINKEDLIST.\n");
+            printf("3) VERIFICAR LINKEDLIST CLONADA.\n");
+            printf("4) GUARDAR LINKEDLIST CLONADA.\n");
+            printf("5) SALIR.\n\n");
+
+            getInt(&response, "SELECCIONE UNA OPCION: ", "ERROR ", 1, 5);
+
+            if(response != 5)
+            {
+                switch( response )
+                {
+                case 1:
+                    newList = ll_clone(this);
+                    if( ll_len(newList) == tam )
+                    {
+                        printf("\nLINKEDLIST CLONADA CON EXITO!\n\n");
+                        able = 1;
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO CLONAR LA LINKEDLIST!\n\n");
+                    }
+                    system("pause");
+                    break;
+
+                case 2:
+                    system("cls");
+                    ll_sort(this, ordenarPorId, 1);
+                    printEmployees(this);
+
+                    getInt(&minId, "\nINGRESE DESDE QUE ID: ", "ERROR, INGRESO UN NUMERO FUERA DE RANGO, INTENTE OTRO! ", 0, tam-1);
+                    getInt(&maxId, "INGRESE HASTA QUE ID: ", "ERROR, INGRESO UN NUMERO FUERA DE RANGO, INTENTE OTRO! ", minId+1, tam);
+
+                    for(int i=0; i<tam; i++)
+                    {
+                        if( minId == ( (sEmployee*) ll_get(this, i) )->id )
+                        {
+                            minIndex = ll_indexOf(this, (sEmployee*) ll_get(this, i) );
+                        }
+                        else if( maxId == ( (sEmployee*) ll_get(this, i) )->id )
+                        {
+                            maxIndex = ll_indexOf(this, (sEmployee*) ll_get(this, i) );
+                        }
+                    }
+
+                    newList = ll_subList(this, minIndex, maxIndex);
+
+                    if( ll_len(newList) > 0 && ll_len(newList) < maxIndex )
+                    {
+                        printf("\nLINKEDLIST CLONADA CON EXITO!\n\n");
+                        able = 1;
+                    }
+                    else
+                    {
+                        printf("\nNO SE PUDO CLONAR LA LINKEDLIST\n\n");
+                    }
+                    system("pause");
+                    break;
+
+                case 3:
+                    if(newList != NULL && ll_len(newList) > 0)
+                    {
+                        if( ll_containsAll(this, newList) )
+                        {
+                            printf("\nTODOS LOS ELEMENTOS DE LA LINKEDLIST CLONADA ESTAN EN LA LINKEDLIST ORIGINAL!\n\n");
+                        }
+                    }
+                    else
+                    {
+                        printf("\nNO HAY LINKEDLIST CLONADA!\n\n");
+                    }
+                    system("pause");
+                    break;
+
+                case 4:
+                    if( newList != NULL && ll_len(newList) > 0 )
+                    {
+                        if( controller_saveAsText("dataClonada.csv", newList) )
+                        {
+                            printf("\nLINKEDLIST GUARDADA CON EXITO!\n\n");
+                        }
+                        else
+                        {
+                            printf("\nNO SE PUDO GUARDAR LA LINKEDLIST!\n\n");
+                        }
+                    }
+                    else
+                    {
+                        printf("\nNO HAY ELEMENTOS PARA GUARDAR!\n\n");
+                    }
+                    system("pause");
+                    break;
+                }
+            }
+            else
+            {
+                printf("\nSALIENDO AL MENU PRINCIPAL!\n\n");
+            }
+
+        }while(response != 5);
+    }
+
+    return able;
+}

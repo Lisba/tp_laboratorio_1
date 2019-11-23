@@ -178,12 +178,4 @@ int ordenarPorHorasTrabajadas(void* emp1, void* emp2);
  */
 int ordenarPorSueldo(void* emp1, void* emp2);
 
-/** \brief Elimina la linkedList completamente.
- *
- * \param this LinkedList*
- * \return int
- *
- */
-int eliminarLinkedListEntera(LinkedList* this);
-
 #endif // employee_H_INCLUDED

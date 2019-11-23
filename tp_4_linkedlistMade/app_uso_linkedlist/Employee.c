@@ -14,10 +14,12 @@ int menu(void)
     printf("5-Baja de empleado.\n");
     printf("6-Listar empleados.\n");
     printf("7-Ordenar empleados.\n");
-    printf("8-Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
-    printf("9-Guardar los datos de los empleados en el archivo data.csv (modo binario).\n");
-    printf("10-Salir.\n\n");
-    getInt(&opcion, "Ingrese opcion: ", "Opcion invalida. ", 1, 10);
+    printf("8-Clonar LinkedList.\n");
+    printf("9-Eliminar linkedList.\n");
+    printf("10-Guardar los datos de los empleados en el archivo data.csv (modo texto).\n");
+    printf("11-Guardar los datos de los empleados en el archivo data.csv (modo binario).\n");
+    printf("12-Salir.\n\n");
+    getInt(&opcion, "Ingrese opcion: ", "Opcion invalida. ", 1, 12);
 
     return opcion;
 }
@@ -194,13 +196,15 @@ int printEmployee(sEmployee* this)
 int printEmployees(LinkedList* pArrayListEmployee)
 {
     int able = 0;
+    int tam;
 
     if( pArrayListEmployee != NULL )
     {
+        tam = ll_len(pArrayListEmployee);
         system("cls");
         printf("ID             NOMBRE      HORAS T.    SUELDO\n");
 
-        for(int i=0; i<ll_len(pArrayListEmployee); i++)
+        for(int i=0; i<tam; i++)
         {
             printEmployee(((sEmployee*) ll_get(pArrayListEmployee, i)));
             able = 1;
@@ -324,26 +328,4 @@ int ordenarPorSueldo(void* emp1, void* emp2)
     }
 
     return value;
-}
-
-int eliminarLinkedListEntera(LinkedList* this)
-{
-    int able = 0;
-    int tam = ll_len(this);
-
-    for(int i=0; i < tam; i++)
-    {
-        if( ll_pop(this, i) != NULL )
-        {
-            employee_delete(ll_pop(this, i));
-            able = 1;
-        }
-    }
-
-    if( able )
-    {
-        ll_deleteLinkedList(this);
-    }
-
-    return able;
 }
