@@ -618,6 +618,12 @@ int controller_saveAsBinary(char* path , LinkedList* pArrayListEmployee)
     return able;
 }
 
+/** \brief Clona la linkedList entera o parcialmente y guarda la nueva linkedList clonada en un archivo dataClonada.csv (modo texto).
+ *
+ * \param this LinkedList*
+ * \return int
+ *
+ */
 int controller_CloneLinkedList(LinkedList* this)
 {
     int able = 0;
